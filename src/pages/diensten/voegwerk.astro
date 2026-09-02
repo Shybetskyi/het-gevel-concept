@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import closeupImage from '../../assets/generated/voegwerk-closeup.jpg';
 
 const voegtypes = [
   { title: 'Snijvoeg', text: 'Strak en vlak met de steen — een moderne, minimalistische afwerking.' },
@@ -44,7 +46,13 @@ const voegtypes = [
       </div>
     </div>
 
-    <ImagePlaceholder label="Close-up voegwerk in uitvoering" class="mt-12 aspect-[21/9] rounded-brand" />
+    <Image
+      src={closeupImage}
+      alt="Close-up van handen die vers voegwerk aanbrengen met een voegspijker"
+      class="mt-12 aspect-[21/9] w-full rounded-brand object-cover"
+      widths={[600, 1000, 1600]}
+      sizes="100vw"
+    />
 
     <h2 class="mt-16 font-display text-lg font-semibold uppercase tracking-wide text-primary">Voegtypes</h2>
     <div class="mt-6 grid gap-6 sm:grid-cols-3">

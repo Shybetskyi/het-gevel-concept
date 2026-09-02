@@ -1,7 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import teamImage from '../../assets/generated/opdrachtgevers-team.jpg';
 
 const groups = [
   {
@@ -36,7 +37,13 @@ const groups = [
           woning tot een compleet appartementencomplex.
         </p>
       </div>
-      <ImagePlaceholder label="Team aan het werk op locatie" class="aspect-[4/3] rounded-brand" />
+      <Image
+        src={teamImage}
+        alt="Twee vakmensen overleggen bij een gevel in renovatie"
+        class="aspect-[4/3] w-full rounded-brand object-cover"
+        widths={[400, 800, 1200]}
+        sizes="(min-width: 768px) 50vw, 100vw"
+      />
     </div>
 
     <div class="mt-12 grid gap-6 md:grid-cols-3">

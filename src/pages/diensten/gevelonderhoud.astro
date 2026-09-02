@@ -1,7 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import voorImage from '../../assets/generated/gevelreiniging-voor.jpg';
+import naImage from '../../assets/generated/gevelreiniging-na.jpg';
+import impregnerenImage from '../../assets/generated/impregneren.jpg';
 
 const benefits = [
   'Langere levensduur van de gevel',
@@ -25,7 +28,32 @@ const benefits = [
 
     <div class="mt-12 grid gap-10 md:grid-cols-2">
       <div>
-        <ImagePlaceholder label="Gevelreiniging — voor/na" class="aspect-[4/3] rounded-brand" />
+        <div class="grid grid-cols-2 gap-2">
+          <div class="relative">
+            <Image
+              src={voorImage}
+              alt="Vervuilde bakstenen gevel voor reiniging"
+              class="aspect-square w-full rounded-brand object-cover"
+              widths={[300, 500]}
+              sizes="25vw"
+            />
+            <span class="absolute left-2 top-2 rounded-brand bg-primary px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-sand">
+              Voor
+            </span>
+          </div>
+          <div class="relative">
+            <Image
+              src={naImage}
+              alt="Schone bakstenen gevel na reiniging"
+              class="aspect-square w-full rounded-brand object-cover"
+              widths={[300, 500]}
+              sizes="25vw"
+            />
+            <span class="absolute left-2 top-2 rounded-brand bg-accent px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-paper">
+              Na
+            </span>
+          </div>
+        </div>
         <h2 class="mt-5 font-display text-lg font-semibold uppercase tracking-wide text-primary">
           Gevelreiniging
         </h2>
@@ -35,7 +63,13 @@ const benefits = [
         </p>
       </div>
       <div>
-        <ImagePlaceholder label="Impregneren aanbrengen" class="aspect-[4/3] rounded-brand" />
+        <Image
+          src={impregnerenImage}
+          alt="Vakman brengt impregneermiddel aan op een bakstenen gevel"
+          class="aspect-[4/3] w-full rounded-brand object-cover"
+          widths={[400, 800, 1200]}
+          sizes="(min-width: 768px) 50vw, 100vw"
+        />
         <h2 class="mt-5 font-display text-lg font-semibold uppercase tracking-wide text-primary">
           Impregneren
         </h2>

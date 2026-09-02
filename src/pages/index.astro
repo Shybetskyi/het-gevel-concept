@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import CtaBand from '../components/CtaBand.astro';
 import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import heroImage from '../assets/generated/home-hero.jpg';
 import { SITE } from '../consts';
 
 const services = [
@@ -68,7 +70,13 @@ const reviews = [
           </a>
         </div>
       </div>
-      <ImagePlaceholder label="Hero-foto — gevelrenovatie in uitvoering" class="aspect-[4/3] rounded-brand" />
+      <Image
+        src={heroImage}
+        alt="Vakman brengt nieuw voegwerk aan op een bakstenen gevel"
+        class="aspect-[4/3] w-full rounded-brand object-cover"
+        widths={[400, 800, 1200]}
+        sizes="(min-width: 768px) 50vw, 100vw"
+      />
     </div>
   </section>
 

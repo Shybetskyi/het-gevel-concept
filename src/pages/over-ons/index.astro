@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import gevelImage from '../../assets/generated/overons-gevel.jpg';
 import { SITE } from '../../consts';
 
 const kenmerken = [
@@ -22,7 +24,13 @@ const kenmerken = [
     </p>
 
     <div class="mt-12 grid gap-10 md:grid-cols-2 md:items-center">
-      <ImagePlaceholder label="Gevel in renovatie" class="aspect-[4/3] rounded-brand md:order-2" />
+      <Image
+        src={gevelImage}
+        alt="Bakstenen gevel met deels vernieuwd voegwerk"
+        class="aspect-[4/3] w-full rounded-brand object-cover md:order-2"
+        widths={[400, 800, 1200]}
+        sizes="(min-width: 768px) 50vw, 100vw"
+      />
       <div>
         <h2 class="font-display text-lg font-semibold uppercase tracking-wide text-primary">Onze missie</h2>
         <p class="mt-3 text-sm leading-relaxed text-primary/75">
