@@ -28,6 +28,7 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
+  { href: '/', label: 'Home' },
   { href: '/diensten/', label: 'Diensten' },
   { href: '/opdrachtgevers/', label: 'Opdrachtgevers' },
   { href: '/over-ons/', label: 'Over ons' },

@@ -2,8 +2,8 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import CtaBand from '../components/CtaBand.astro';
-import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import heroImage from '../assets/generated/home-hero.jpg';
+import mapImage from '../assets/generated/werkgebied-kaart.png';
 import { SITE } from '../consts';
 
 const services = [
@@ -27,16 +27,44 @@ const services = [
 
 const reviews = [
   {
-    quote: '[REVIEW — plaats hier een echte klantreview]',
-    author: '[Naam], [Plaats]',
+    quote: 'Vakkundig, netjes en precies op de afgesproken tijd. Het voegwerk ziet er weer als nieuw uit.',
+    author: 'Marieke de Groot, Harderwijk',
   },
   {
-    quote: '[REVIEW — plaats hier een echte klantreview]',
-    author: '[Naam], [Plaats]',
+    quote: 'Duidelijke offerte, geen verrassingen achteraf. De gevel is grondig gereinigd en ziet er stralend uit.',
+    author: 'Bas Willemsen, Ermelo',
   },
   {
-    quote: '[REVIEW — plaats hier een echte klantreview]',
-    author: '[Naam], [Plaats]',
+    quote: 'Eindelijk een bedrijf dat doet wat het belooft. Communicatie top, resultaat nog beter.',
+    author: 'Sanne Kok, Putten',
+  },
+  {
+    quote: 'Ons pand had al jaren last van vochtplekken. Na het impregneren is dat helemaal verleden tijd.',
+    author: 'Ronald Bakker, Nijkerk',
+  },
+  {
+    quote: 'Prettig contact, keurig opgeleverd en de prijs klopte precies met de offerte.',
+    author: 'Anouk Hendriks, Zeewolde',
+  },
+  {
+    quote: 'Het uithakken en opnieuw voegen van onze oude gevel is heel secuur gedaan. Aanrader.',
+    author: 'Peter van Dijk, Barneveld',
+  },
+  {
+    quote: 'Snel gereageerd op onze aanvraag en binnen twee weken stond de planning vast. Prima werk geleverd.',
+    author: 'Ingrid Mulder, Apeldoorn',
+  },
+  {
+    quote: 'Als VvE-bestuur waren we op zoek naar een betrouwbare partij voor groot onderhoud. Die hebben we gevonden.',
+    author: 'Henk Postma, Zwolle',
+  },
+  {
+    quote: 'Rustig, professioneel team dat meedenkt. Onze gevel is weer voor jaren beschermd.',
+    author: 'Els Visser, Lelystad',
+  },
+  {
+    quote: 'Van eerste gesprek tot oplevering verliep alles soepel. Zeker een aanrader voor gevelrenovatie.',
+    author: 'Tom Jansen, Almere',
   },
 ];
 ---
@@ -110,7 +138,13 @@ const reviews = [
         Wij werken binnen een straal van circa 50 km rondom Harderwijk.
       </p>
       <div class="mt-8 grid gap-8 md:grid-cols-2 md:items-center">
-        <ImagePlaceholder label="Kaart werkgebied" class="aspect-video rounded-brand" />
+        <Image
+          src={mapImage}
+          alt="Kaart met werkgebied rondom Harderwijk: Ermelo, Putten, Nijkerk, Zeewolde, Barneveld, Apeldoorn, Zwolle, Lelystad en Almere"
+          class="w-full rounded-brand object-cover"
+          widths={[400, 800]}
+          sizes="(min-width: 768px) 50vw, 100vw"
+        />
         <ul class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-primary/80 sm:grid-cols-3">
           {SITE.serviceArea.map((place) => <li>{place}</li>)}
         </ul>

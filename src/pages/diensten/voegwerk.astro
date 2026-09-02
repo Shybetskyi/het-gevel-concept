@@ -2,13 +2,15 @@
 import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
 import closeupImage from '../../assets/generated/voegwerk-closeup.jpg';
+import snijvoegImage from '../../assets/generated/voegtype-snijvoeg.jpg';
+import platvolImage from '../../assets/generated/voegtype-platvol.jpg';
+import schaduwvoegImage from '../../assets/generated/voegtype-schaduwvoeg.jpg';
 
 const voegtypes = [
-  { title: 'Snijvoeg', text: 'Strak en vlak met de steen — een moderne, minimalistische afwerking.' },
-  { title: 'Platvolle voeg', text: 'De traditionele voeg, gelijk met het steenvlak, tijdloos en robuust.' },
-  { title: 'Schaduwvoeg', text: 'Verdiept aangebracht, met een subtiele schaduwlijn voor extra reliëf.' },
+  { title: 'Snijvoeg', text: 'Strak en vlak met de steen — een moderne, minimalistische afwerking.', image: snijvoegImage },
+  { title: 'Platvolle voeg', text: 'De traditionele voeg, gelijk met het steenvlak, tijdloos en robuust.', image: platvolImage },
+  { title: 'Schaduwvoeg', text: 'Verdiept aangebracht, met een subtiele schaduwlijn voor extra reliëf.', image: schaduwvoegImage },
 ];
 ---
 
@@ -58,7 +60,13 @@ const voegtypes = [
     <div class="mt-6 grid gap-6 sm:grid-cols-3">
       {voegtypes.map((v) => (
         <div class="rounded-brand border border-sand-2 bg-paper p-6">
-          <ImagePlaceholder label={v.title} class="aspect-square rounded-brand" />
+          <Image
+            src={v.image}
+            alt={`Close-up van een ${v.title.toLowerCase()}`}
+            class="aspect-square w-full rounded-brand object-cover"
+            widths={[300, 500]}
+            sizes="33vw"
+          />
           <h3 class="mt-4 font-display text-base font-semibold uppercase tracking-wide text-primary">{v.title}</h3>
           <p class="mt-2 text-sm text-primary/75">{v.text}</p>
         </div>

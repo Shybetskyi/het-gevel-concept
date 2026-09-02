@@ -2,8 +2,8 @@
 import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
 import gevelImage from '../../assets/generated/overons-gevel.jpg';
+import mapImage from '../../assets/generated/werkgebied-kaart.png';
 import { SITE } from '../../consts';
 
 const kenmerken = [
@@ -67,7 +67,13 @@ const kenmerken = [
           {SITE.serviceArea.map((place) => <li>{place}</li>)}
         </ul>
       </div>
-      <ImagePlaceholder label="Kaart werkgebied" class="aspect-video rounded-brand" />
+      <Image
+        src={mapImage}
+        alt="Kaart met werkgebied rondom Harderwijk: Ermelo, Putten, Nijkerk, Zeewolde, Barneveld, Apeldoorn, Zwolle, Lelystad en Almere"
+        class="w-full rounded-brand object-cover"
+        widths={[400, 800]}
+        sizes="(min-width: 768px) 50vw, 100vw"
+      />
     </div>
   </section>
 

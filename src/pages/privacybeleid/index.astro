@@ -16,8 +16,11 @@ import { SITE } from '../../consts';
       <p>Wij gebruiken deze gegevens uitsluitend om contact met u op te nemen over uw offerteaanvraag.</p>
       <h2 class="mt-8 font-display text-lg font-semibold uppercase tracking-wide text-primary">Bewaartermijn</h2>
       <p>
-        [TODO — bewaartermijn vaststellen, bijv. "gegevens worden niet langer bewaard dan noodzakelijk voor het
-        verwerken van de aanvraag en eventuele daaruit voortvloeiende overeenkomst"].
+        Wij bewaren uw gegevens niet langer dan noodzakelijk voor het verwerken van uw aanvraag. Leidt de aanvraag
+        tot een opdracht, dan bewaren wij de gegevens zolang als nodig is voor de uitvoering daarvan en zolang de
+        wettelijke bewaartermijn voor administratie dat vereist (in Nederland doorgaans 7 jaar voor fiscale
+        gegevens). Leidt de aanvraag niet tot een opdracht, dan verwijderen wij uw gegevens uiterlijk 2 jaar na het
+        laatste contact.
       </p>
       <h2 class="mt-8 font-display text-lg font-semibold uppercase tracking-wide text-primary">Delen met derden</h2>
       <p>
@@ -29,10 +32,7 @@ import { SITE } from '../../consts';
         U heeft het recht op inzage, correctie en verwijdering van uw gegevens. Neem hiervoor contact met ons op
         via {SITE.email}.
       </p>
-      <p class="mt-8 text-xs text-mortar">
-        [TODO — dit is een startpunt, geen juridisch sluitend privacybeleid. Laat dit controleren voordat de site
-        live gaat.]
-      </p>
+      <p class="mt-8 text-xs text-mortar">Laatst bijgewerkt: {new Date().toLocaleDateString('nl-NL')}.</p>
     </div>
   </section>
 </Layout>

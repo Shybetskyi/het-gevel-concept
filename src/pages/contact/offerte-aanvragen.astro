@@ -1,6 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
-import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+import voltooidImage from '../../assets/generated/offerte-voltooid.jpg';
 import { SITE } from '../../consts';
 
 const diensten = ['Voegwerk uithakken', 'Nieuw voegwerk', 'Gevelreiniging', 'Impregneren', 'Anders'];
@@ -162,7 +163,13 @@ const diensten = ['Voegwerk uithakken', 'Nieuw voegwerk', 'Gevelreiniging', 'Imp
             op maat.
           </p>
         </div>
-        <ImagePlaceholder label="Voltooide gevelrenovatie" class="aspect-square rounded-brand" />
+        <Image
+          src={voltooidImage}
+          alt="Voltooide gevelrenovatie van een bakstenen woning"
+          class="aspect-[3/4] w-full rounded-brand object-cover"
+          widths={[300, 500]}
+          sizes="320px"
+        />
       </aside>
     </div>
   </section>

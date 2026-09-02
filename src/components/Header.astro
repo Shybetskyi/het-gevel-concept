@@ -9,7 +9,7 @@ const currentPath = Astro.url.pathname;
 <header class="sticky top-0 z-40 border-b border-sand-2 bg-paper/95 backdrop-blur">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
     <a href="/" class="flex items-center gap-3">
-      <Image src={logoIcon} alt="Het Gevel Concept" class="h-10 w-auto" />
+      <Image src={logoIcon} alt="Het Gevel Concept" class="h-14 w-auto" />
       <span class="font-display text-lg font-semibold uppercase tracking-wide text-primary">
         Het <span class="text-accent">Gevel</span> Concept
       </span>
@@ -21,7 +21,7 @@ const currentPath = Astro.url.pathname;
           href={link.href}
           class:list={[
             'font-body text-sm font-semibold uppercase tracking-wide text-primary/80 hover:text-accent',
-            currentPath.startsWith(link.href) && 'text-accent',
+            (link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href)) && 'text-accent',
           ]}
         >
           {link.label}

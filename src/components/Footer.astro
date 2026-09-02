@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logoLight from '../assets/logo-icon-light.png';
 import { SITE, NAV_LINKS } from '../consts';
 const year = new Date().getFullYear();
 ---
@@ -7,7 +9,8 @@ const year = new Date().getFullYear();
   <div class="mx-auto max-w-6xl px-5 py-14">
     <div class="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
       <div>
-        <div class="font-display text-lg font-semibold uppercase tracking-wide text-sand">
+        <Image src={logoLight} alt="Het Gevel Concept" class="h-12 w-auto" />
+        <div class="mt-3 font-display text-lg font-semibold uppercase tracking-wide text-sand">
           Het <span class="text-accent">Gevel</span> Concept
         </div>
         <p class="mt-3 text-sm text-sand-2/80">{SITE.tagline}</p>
