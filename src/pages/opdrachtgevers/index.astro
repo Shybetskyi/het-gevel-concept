@@ -1,0 +1,75 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import ImagePlaceholder from '../../components/ImagePlaceholder.astro';
+
+const groups = [
+  {
+    title: 'Particulieren',
+    text: 'Trots op uw eigen woning, maar geen zin in gedoe. Daarom bieden wij vaste prijzen, heldere communicatie en een strakke oplevering — zonder verrassingen achteraf.',
+    points: ['Vaste prijs vooraf', 'Persoonlijk contact'],
+  },
+  {
+    title: "VvE's & vastgoedbeheerders",
+    text: "Voor grootschalig onderhoud aan complexen bieden wij duidelijke communicatie, betrouwbare planning en volledige dossiervorming.",
+    points: ['Bewezen onderhoud (VVE)', 'Volledige dossiervorming'],
+    featured: true,
+  },
+  {
+    title: 'Aannemers',
+    text: 'Als onderaannemer werken wij mee met uw planning en leveren wij voegwerk en gevelwerk op de afgesproken kwaliteit en het afgesproken tijdstip.',
+    points: ['Loyaal aan planning', 'Heldere afstemming'],
+  },
+];
+---
+
+<Layout
+  title="Opdrachtgevers"
+  description="Het Gevel Concept werkt voor particulieren, VvE's, vastgoedbeheerders en aannemers in Harderwijk en omstreken."
+>
+  <section class="mx-auto max-w-6xl px-5 py-16">
+    <div class="grid gap-10 md:grid-cols-2 md:items-center">
+      <div>
+        <h1 class="font-display text-4xl font-bold text-primary">Voor wie wij werken</h1>
+        <p class="mt-4 max-w-xl text-primary/75">
+          Vanuit Harderwijk bedienen wij een brede groep opdrachtgevers in Midden-Nederland, van een particuliere
+          woning tot een compleet appartementencomplex.
+        </p>
+      </div>
+      <ImagePlaceholder label="Team aan het werk op locatie" class="aspect-[4/3] rounded-brand" />
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {groups.map((g) => (
+        <div
+          class:list={[
+            'rounded-brand border p-7',
+            g.featured ? 'border-primary bg-primary text-sand' : 'border-sand-2 bg-paper',
+          ]}
+        >
+          <h2
+            class:list={[
+              'font-display text-lg font-semibold uppercase tracking-wide',
+              g.featured ? 'text-sand' : 'text-primary',
+            ]}
+          >
+            {g.title}
+          </h2>
+          <p class:list={['mt-3 text-sm leading-relaxed', g.featured ? 'text-sand-2/85' : 'text-primary/75']}>
+            {g.text}
+          </p>
+          <ul class="mt-4 space-y-1.5 text-sm">
+            {g.points.map((p) => (
+              <li class:list={['flex items-center gap-2', g.featured ? 'text-sand-2' : 'text-primary/80']}>
+                <span class="h-1 w-1 rounded-full bg-accent"></span>
+                {p}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CtaBand heading="Klaar om uw gevel te vernieuwen?" />
+</Layout>

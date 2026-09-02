@@ -1,0 +1,24 @@
+---
+import { SITE } from '../consts';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  name: SITE.tradeName,
+  legalName: SITE.legalName,
+  image: new URL('/og-image.png', Astro.site).toString(),
+  url: Astro.site?.toString(),
+  telephone: SITE.phone,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE.address.street,
+    postalCode: SITE.address.postalCode,
+    addressLocality: SITE.address.city,
+    addressCountry: 'NL',
+  },
+  areaServed: SITE.serviceArea.map((name) => ({ '@type': 'City', name })),
+  slogan: SITE.tagline,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

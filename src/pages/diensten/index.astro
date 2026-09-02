@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+const categories = [
+  {
+    href: '/diensten/voegwerk/',
+    title: 'Voegwerk',
+    text: 'Uithakken van oud voegwerk en het aanbrengen van nieuw voegwerk — in snijvoeg, platvolle voeg of schaduwvoeg.',
+  },
+  {
+    href: '/diensten/gevelonderhoud/',
+    title: 'Gevelonderhoud',
+    text: 'Gevelreiniging en impregneren, voor een gevel die er niet alleen goed uitziet, maar ook beschermd is.',
+  },
+];
+
+const upcoming = ['Scheurherstel', 'Steenvervanging', 'Gevelcoating', 'Complete gevelrenovaties'];
+---
+
+<Layout
+  title="Diensten"
+  description="Voegwerk en gevelonderhoud door Het Gevel Concept — vakkundig, met vaste prijzen en heldere planning."
+>
+  <section class="mx-auto max-w-6xl px-5 py-16">
+    <h1 class="font-display text-4xl font-bold text-primary">Onze diensten</h1>
+    <p class="mt-4 max-w-2xl text-primary/75">
+      Vakmanschap zonder compromissen, van gevel tot voeg.
+    </p>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      {categories.map((c) => (
+        <a
+          href={c.href}
+          class="group rounded-brand border border-sand-2 bg-paper p-8 transition hover:border-accent"
+        >
+          <h2 class="font-display text-xl font-semibold uppercase tracking-wide text-primary group-hover:text-accent">
+            {c.title}
+          </h2>
+          <p class="mt-3 text-sm leading-relaxed text-primary/75">{c.text}</p>
+          <span class="mt-4 inline-block text-sm font-semibold text-accent">Meer info &rarr;</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-16 border-t border-sand-2 pt-10">
+      <h2 class="font-display text-lg font-semibold uppercase tracking-wide text-mortar">
+        Binnenkort beschikbaar
+      </h2>
+      <ul class="mt-4 flex flex-wrap gap-3 text-sm text-primary/70">
+        {upcoming.map((item) => (
+          <li class="rounded-brand border border-sand-2 px-4 py-2">{item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

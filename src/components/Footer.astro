@@ -1,0 +1,55 @@
+---
+import { SITE, NAV_LINKS } from '../consts';
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-primary text-sand">
+  <div class="mx-auto max-w-6xl px-5 py-14">
+    <div class="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
+      <div>
+        <div class="font-display text-lg font-semibold uppercase tracking-wide text-sand">
+          Het Gevel Concept
+        </div>
+        <p class="mt-3 text-sm text-sand-2/80">{SITE.tagline}</p>
+      </div>
+
+      <div>
+        <div class="font-display text-sm font-semibold uppercase tracking-wide text-sand-2">
+          Navigatie
+        </div>
+        <ul class="mt-3 space-y-2 text-sm text-sand-2/90">
+          {NAV_LINKS.map((link) => (
+            <li><a href={link.href} class="hover:text-accent">{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <div class="font-display text-sm font-semibold uppercase tracking-wide text-sand-2">
+          Contact
+        </div>
+        <ul class="mt-3 space-y-2 text-sm text-sand-2/90">
+          <li><a href={SITE.phoneHref} class="hover:text-accent">{SITE.phone}</a></li>
+          <li>{SITE.address.street}</li>
+          <li>{SITE.address.postalCode} {SITE.address.city}</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="font-display text-sm font-semibold uppercase tracking-wide text-sand-2">
+          Juridisch
+        </div>
+        <ul class="mt-3 space-y-2 text-sm text-sand-2/90">
+          <li><a href="/privacybeleid/" class="hover:text-accent">Privacybeleid</a></li>
+          <li><a href="/cookiebeleid/" class="hover:text-accent">Cookiebeleid</a></li>
+          <li><a href="/algemene-voorwaarden/" class="hover:text-accent">Algemene voorwaarden</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-2 border-t border-sand/10 pt-6 text-xs text-sand-2/70 sm:flex-row sm:items-center sm:justify-between">
+      <span>&copy; {year} {SITE.legalName}, handelend onder de naam {SITE.tradeName}</span>
+      <span>KvK {SITE.kvk} &middot; BTW {SITE.btw}</span>
+    </div>
+  </div>
+</footer>

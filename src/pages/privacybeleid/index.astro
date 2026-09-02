@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { SITE } from '../../consts';
+---
+
+<Layout title="Privacybeleid" description="Privacybeleid van Het Gevel Concept.">
+  <section class="mx-auto max-w-3xl px-5 py-16">
+    <h1 class="font-display text-3xl font-bold text-primary">Privacybeleid</h1>
+    <div class="prose prose-sm mt-8 max-w-none text-primary/85">
+      <p>
+        {SITE.legalName}, handelend onder de naam {SITE.tradeName} (KvK {SITE.kvk}), verwerkt persoonsgegevens die u
+        aan ons verstrekt via het offerteformulier op deze website: naam, adres, telefoonnummer, e-mailadres en de
+        door u toegevoegde bestanden en opmerkingen.
+      </p>
+      <h2 class="mt-8 font-display text-lg font-semibold uppercase tracking-wide text-primary">Doel</h2>
+      <p>Wij gebruiken deze gegevens uitsluitend om contact met u op te nemen over uw offerteaanvraag.</p>
+      <h2 class="mt-8 font-display text-lg font-semibold uppercase tracking-wide text-primary">Bewaartermijn</h2>
+      <p>
+        [TODO — bewaartermijn vaststellen, bijv. "gegevens worden niet langer bewaard dan noodzakelijk voor het
+        verwerken van de aanvraag en eventuele daaruit voortvloeiende overeenkomst"].
+      </p>
+      <h2 class="mt-8 font-display text-lg font-semibold uppercase tracking-wide text-primary">Delen met derden</h2>
+      <p>
+        Wij delen uw gegevens niet met derden, behalve met de verwerkers die noodzakelijk zijn om deze website en
+        het offerteformulier te laten functioneren (o.a. e-mailverzending).
+      </p>
+      <h2 class="mt-8 font-display text-lg font-semibold uppercase tracking-wide text-primary">Uw rechten</h2>
+      <p>
+        U heeft het recht op inzage, correctie en verwijdering van uw gegevens. Neem hiervoor contact met ons op
+        via {SITE.email}.
+      </p>
+      <p class="mt-8 text-xs text-mortar">
+        [TODO — dit is een startpunt, geen juridisch sluitend privacybeleid. Laat dit controleren voordat de site
+        live gaat.]
+      </p>
+    </div>
+  </section>
+</Layout>

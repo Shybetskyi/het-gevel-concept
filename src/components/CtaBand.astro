@@ -1,0 +1,20 @@
+---
+interface Props {
+  heading?: string;
+}
+const { heading = 'Klaar voor een renovatie?' } = Astro.props;
+---
+
+<section class="bg-primary py-14">
+  <div class="mx-auto flex max-w-6xl flex-col items-center gap-5 px-5 text-center sm:flex-row sm:justify-between sm:text-left">
+    <h2 class="font-display text-2xl font-semibold uppercase tracking-wide text-sand sm:text-3xl">
+      {heading}
+    </h2>
+    <a
+      href="/contact/offerte-aanvragen/"
+      class="shrink-0 rounded-brand bg-accent px-7 py-3.5 font-display text-sm font-semibold uppercase tracking-wide text-paper hover:opacity-90"
+    >
+      Offerte aanvragen
+    </a>
+  </div>
+</section>

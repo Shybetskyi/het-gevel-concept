@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import logoIcon from '../assets/logo-icon.png';
+import { NAV_LINKS } from '../consts';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 border-b border-sand-2 bg-paper/95 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+    <a href="/" class="flex items-center gap-3">
+      <Image src={logoIcon} alt="Het Gevel Concept" width={40} height={40} class="h-10 w-auto" />
+      <span class="font-display text-lg font-semibold uppercase tracking-wide text-primary">
+        Het Gevel Concept
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-7 md:flex">
+      {NAV_LINKS.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            'font-body text-sm font-semibold uppercase tracking-wide text-primary/80 hover:text-accent',
+            currentPath.startsWith(link.href) && 'text-accent',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <a
+      href="/contact/offerte-aanvragen/"
+      class="hidden rounded-brand bg-accent px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-wide text-paper hover:opacity-90 md:inline-block"
+    >
+      Offerte aanvragen
+    </a>
+
+    <button
+      id="mobile-menu-toggle"
+      class="inline-flex items-center justify-center rounded-brand border border-primary/20 p-2 md:hidden"
+      aria-label="Menu openen"
+      aria-expanded="false"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+  </div>
+
+  <nav id="mobile-menu" class="hidden flex-col gap-1 border-t border-sand-2 bg-paper px-5 py-4 md:hidden">
+    {NAV_LINKS.map((link) => (
+      <a href={link.href} class="rounded-brand px-2 py-2.5 font-body text-sm font-semibold uppercase text-primary hover:bg-sand">
+        {link.label}
+      </a>
+    ))}
+    <a
+      href="/contact/offerte-aanvragen/"
+      class="mt-2 rounded-brand bg-accent px-4 py-2.5 text-center font-display text-sm font-semibold uppercase text-paper"
+    >
+      Offerte aanvragen
+    </a>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('flex');
+    menu?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+</script>

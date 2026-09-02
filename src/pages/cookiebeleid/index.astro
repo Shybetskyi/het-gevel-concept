@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { SITE } from '../../consts';
+---
+
+<Layout title="Cookiebeleid" description="Cookiebeleid van Het Gevel Concept.">
+  <section class="mx-auto max-w-3xl px-5 py-16">
+    <h1 class="font-display text-3xl font-bold text-primary">Cookiebeleid</h1>
+    <div class="prose prose-sm mt-8 max-w-none text-primary/85">
+      <p>Deze website gebruikt twee soorten cookies:</p>
+      <h2 class="mt-8 font-display text-lg font-semibold uppercase tracking-wide text-primary">
+        Noodzakelijke cookies
+      </h2>
+      <p>
+        Deze onthouden alleen uw cookiekeuze (accepteren/weigeren) en zijn nodig om de website goed te laten
+        functioneren. Hiervoor is geen toestemming vereist.
+      </p>
+      <h2 class="mt-8 font-display text-lg font-semibold uppercase tracking-wide text-primary">
+        Statistiekcookies (Google Analytics)
+      </h2>
+      <p>
+        Na uw toestemming gebruiken wij Google Analytics om anoniem bij te houden hoe bezoekers onze website
+        gebruiken, zodat wij de site kunnen verbeteren. Deze cookies worden pas geplaatst nadat u op "Accepteren"
+        klikt in de cookiemelding.
+      </p>
+      <p>U kunt uw keuze op elk moment wijzigen door uw browsergegevens voor deze site te wissen.</p>
+      <p class="mt-8 text-xs text-mortar">
+        Vragen over dit cookiebeleid? Neem contact op via {SITE.email}.
+      </p>
+    </div>
+  </section>
+</Layout>

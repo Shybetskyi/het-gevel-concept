@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #24272b; /* Leisteen Antraciet */
+  --color-accent: #c1502e; /* Baksteen Terracotta */
+  --color-sand: #f1eae0; /* Zandsteen */
+  --color-sand-2: #e4dacb;
+  --color-mortar: #8b8177; /* Voeggrijs */
+  --color-paper: #fbf8f3;
+
+  --font-display: "Oswald", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-brand: 12px;
+}
+
+body {
+  background-color: var(--color-sand);
+  color: var(--color-primary);
+  font-family: var(--font-body);
+}
