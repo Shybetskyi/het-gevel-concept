@@ -4,7 +4,8 @@ const GA4_ID = import.meta.env.PUBLIC_GA4_ID;
 
 <div
   id="cookie-banner"
-  class="fixed inset-x-0 bottom-0 z-50 hidden border-t-2 border-primary bg-paper p-5 shadow-lg sm:flex sm:items-center sm:justify-between sm:gap-6"
+  style="display: none;"
+  class="fixed inset-x-0 bottom-0 z-50 flex-col items-start gap-4 border-t-2 border-primary bg-paper p-5 shadow-lg sm:flex-row sm:items-center sm:justify-between sm:gap-6"
 >
   <p class="mb-3 text-sm text-primary/90 sm:mb-0">
     Wij gebruiken alleen cookies die nodig zijn om de site te laten werken, en
@@ -51,19 +52,18 @@ const GA4_ID = import.meta.env.PUBLIC_GA4_ID;
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored === 'accepted') {
     loadGA4();
-  } else if (stored !== 'rejected') {
-    banner?.classList.remove('hidden');
-    banner?.classList.add('flex');
+  } else if (stored !== 'rejected' && banner) {
+    banner.style.display = 'flex';
   }
 
   document.getElementById('cookie-accept')?.addEventListener('click', () => {
     localStorage.setItem(STORAGE_KEY, 'accepted');
-    banner?.classList.add('hidden');
+    if (banner) banner.style.display = 'none';
     loadGA4();
   });
 
   document.getElementById('cookie-reject')?.addEventListener('click', () => {
     localStorage.setItem(STORAGE_KEY, 'rejected');
-    banner?.classList.add('hidden');
+    if (banner) banner.style.display = 'none';
   });
 </script>

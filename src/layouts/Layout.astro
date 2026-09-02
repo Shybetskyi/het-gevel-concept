@@ -5,6 +5,7 @@ import LocalBusinessSchema from '../components/LocalBusinessSchema.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title: string;
@@ -39,5 +40,6 @@ const path = Astro.url.pathname;
     </main>
     <Footer />
     <CookieConsent />
+    <Analytics />
   </body>
 </html>

@@ -103,14 +103,20 @@ const diensten = ['Voegwerk uithakken', 'Nieuw voegwerk', 'Gevelreiniging', 'Imp
           <label for="fotos" class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-mortar">
             Foto's van de gevel (optioneel)
           </label>
-          <input
-            id="fotos"
-            name="fotos"
-            type="file"
-            accept=".jpg,.jpeg,.png,.pdf"
-            multiple
-            class="w-full rounded-brand border border-dashed border-sand-2 bg-sand/40 px-3.5 py-4 text-sm text-primary/70 file:mr-3 file:rounded-brand file:border-0 file:bg-primary file:px-3 file:py-1.5 file:text-xs file:font-semibold file:uppercase file:text-sand"
-          />
+          <div
+            id="fotos-dropzone"
+            class="flex w-full cursor-pointer flex-col items-center gap-2 rounded-brand border border-dashed border-sand-2 bg-sand/40 px-3.5 py-6 text-center"
+          >
+            <button
+              type="button"
+              id="fotos-button"
+              class="rounded-brand bg-primary px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wide text-sand"
+            >
+              Bestand kiezen
+            </button>
+            <p id="fotos-filename" class="text-sm text-primary/70">Geen bestand gekozen</p>
+          </div>
+          <input id="fotos" name="fotos" type="file" accept=".jpg,.jpeg,.png,.pdf" multiple class="hidden" />
           <p class="mt-1.5 text-xs text-mortar">jpg, png of pdf, max 5MB per bestand</p>
         </div>
 
@@ -165,6 +171,32 @@ const diensten = ['Voegwerk uithakken', 'Nieuw voegwerk', 'Gevelreiniging', 'Imp
 <script>
   const form = document.getElementById('offerte-form') as HTMLFormElement | null;
   const status = document.getElementById('offerte-form-status');
+
+  const fotosInput = document.getElementById('fotos') as HTMLInputElement | null;
+  const fotosButton = document.getElementById('fotos-button');
+  const fotosDropzone = document.getElementById('fotos-dropzone');
+  const fotosFilename = document.getElementById('fotos-filename');
+
+  function openFotosPicker() {
+    fotosInput?.click();
+  }
+
+  fotosButton?.addEventListener('click', openFotosPicker);
+  fotosDropzone?.addEventListener('click', (event) => {
+    if (event.target !== fotosButton) openFotosPicker();
+  });
+
+  fotosInput?.addEventListener('change', () => {
+    if (!fotosFilename) return;
+    const files = fotosInput.files;
+    if (!files || files.length === 0) {
+      fotosFilename.textContent = 'Geen bestand gekozen';
+    } else if (files.length === 1) {
+      fotosFilename.textContent = files[0].name;
+    } else {
+      fotosFilename.textContent = `${files.length} bestanden gekozen`;
+    }
+  });
 
   form?.addEventListener('submit', async (event) => {
     event.preventDefault();
