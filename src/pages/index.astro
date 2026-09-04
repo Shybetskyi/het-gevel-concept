@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import ReviewsCarousel from '../components/ReviewsCarousel.astro';
 import heroImage from '../assets/generated/home-hero.jpg';
 import mapImage from '../assets/generated/werkgebied-kaart.png';
 import { SITE } from '../consts';
@@ -157,15 +158,8 @@ const reviews = [
     <h2 class="font-display text-2xl font-semibold uppercase tracking-wide text-primary">
       Wat onze klanten zeggen
     </h2>
-    <div class="mt-8 grid gap-6 md:grid-cols-3">
-      {reviews.map((r) => (
-        <blockquote class="rounded-brand border border-sand-2 bg-paper p-6">
-          <p class="text-sm italic text-primary/80">&ldquo;{r.quote}&rdquo;</p>
-          <footer class="mt-4 text-xs font-semibold uppercase tracking-wide text-mortar">
-            {r.author}
-          </footer>
-        </blockquote>
-      ))}
+    <div class="mt-8">
+      <ReviewsCarousel reviews={reviews} />
     </div>
   </section>
 

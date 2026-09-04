@@ -3,22 +3,24 @@ import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import closeupImage from '../../assets/generated/voegwerk-closeup.jpg';
-import VoegDiagram from '../../components/VoegDiagram.astro';
+import knipvoegImage from '../../assets/generated/wall-voeg-uitstekend.jpg';
+import platvolImage from '../../assets/generated/wall-voeg-vol.jpg';
+import schaduwvoegImage from '../../assets/generated/wall-voeg-verdiept.jpg';
 
 const voegtypes = [
   {
-    title: 'Snijvoeg',
-    type: 'snijvoeg' as const,
-    text: 'Vlak met de steen, met messcherp gesneden randen aan boven- en onderzijde — een strakke, zeer precieze voeglijn.',
+    title: 'Knipvoeg',
+    image: knipvoegImage,
+    text: 'De voeg steekt enkele millimeters uit ten opzichte van de steen — een klassiek, karaktervol profiel.',
   },
   {
     title: 'Platvolle voeg',
-    type: 'platvol' as const,
+    image: platvolImage,
     text: 'De traditionele voeg, gelijk met het steenvlak afgewerkt, zonder uitstekende rand — tijdloos en robuust.',
   },
   {
     title: 'Schaduwvoeg',
-    type: 'schaduwvoeg' as const,
+    image: schaduwvoegImage,
     text: 'De voeg ligt verdiept ten opzichte van de steen, waardoor een duidelijke schaduwlijn en meer reliëf ontstaat.',
   },
 ];
@@ -70,9 +72,13 @@ const voegtypes = [
     <div class="mt-6 grid gap-6 sm:grid-cols-3">
       {voegtypes.map((v) => (
         <div class="rounded-brand border border-sand-2 bg-paper p-6">
-          <div class="aspect-square w-full rounded-brand bg-sand p-4">
-            <VoegDiagram type={v.type} />
-          </div>
+          <Image
+            src={v.image}
+            alt={`Close-up van een ${v.title.toLowerCase()}`}
+            class="aspect-square w-full rounded-brand object-cover"
+            widths={[300, 500]}
+            sizes="33vw"
+          />
           <h3 class="mt-4 font-display text-base font-semibold uppercase tracking-wide text-primary">{v.title}</h3>
           <p class="mt-2 text-sm text-primary/75">{v.text}</p>
         </div>

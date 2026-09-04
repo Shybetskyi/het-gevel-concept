@@ -1,0 +1,114 @@
+---
+interface Review {
+  quote: string;
+  author: string;
+}
+interface Props {
+  reviews: Review[];
+}
+const { reviews } = Astro.props;
+---
+
+<div class="relative" id="reviews-carousel">
+  <button
+    type="button"
+    id="reviews-prev"
+    aria-label="Vorige reviews"
+    class="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-sand-2 bg-paper p-2.5 text-primary shadow-md hover:bg-sand sm:-left-5 sm:flex"
+  >
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M15 18l-6-6 6-6" />
+    </svg>
+  </button>
+
+  <div
+    id="reviews-track"
+    class="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2"
+    style="scrollbar-width: none; -ms-overflow-style: none;"
+  >
+    {reviews.map((r) => (
+      <blockquote class="w-[85%] shrink-0 snap-start rounded-brand border border-sand-2 bg-paper p-6 sm:w-[46%] lg:w-[31.5%]">
+        <p class="text-sm italic text-primary/80">&ldquo;{r.quote}&rdquo;</p>
+        <footer class="mt-4 text-xs font-semibold uppercase tracking-wide text-mortar">{r.author}</footer>
+      </blockquote>
+    ))}
+  </div>
+
+  <button
+    type="button"
+    id="reviews-next"
+    aria-label="Volgende reviews"
+    class="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-sand-2 bg-paper p-2.5 text-primary shadow-md hover:bg-sand sm:-right-5 sm:flex"
+  >
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M9 18l6-6-6-6" />
+    </svg>
+  </button>
+</div>
+
+<style>
+  #reviews-track::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script>
+  const track = document.getElementById('reviews-track');
+  const prevBtn = document.getElementById('reviews-prev');
+  const nextBtn = document.getElementById('reviews-next');
+  const wrapper = document.getElementById('reviews-carousel');
+
+  if (track && wrapper) {
+    const cardGap = 24;
+
+    function cardStep() {
+      const card = track.querySelector('blockquote');
+      return card ? card.getBoundingClientRect().width + cardGap : track.clientWidth;
+    }
+
+    function atEnd() {
+      return track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    }
+
+    function scrollNext() {
+      if (atEnd()) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: cardStep(), behavior: 'smooth' });
+      }
+    }
+
+    function scrollPrev() {
+      if (track.scrollLeft <= 4) {
+        track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: -cardStep(), behavior: 'smooth' });
+      }
+    }
+
+    let timer: ReturnType<typeof setInterval> | undefined;
+    function start() {
+      stop();
+      timer = setInterval(scrollNext, 2800);
+    }
+    function stop() {
+      if (timer) clearInterval(timer);
+    }
+
+    nextBtn?.addEventListener('click', () => {
+      scrollNext();
+      start();
+    });
+    prevBtn?.addEventListener('click', () => {
+      scrollPrev();
+      start();
+    });
+
+    wrapper.addEventListener('mouseenter', stop);
+    wrapper.addEventListener('mouseleave', start);
+    wrapper.addEventListener('touchstart', stop, { passive: true });
+    wrapper.addEventListener('touchend', start);
+
+    start();
+  }
+</script>
