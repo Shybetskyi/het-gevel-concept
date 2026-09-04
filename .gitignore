@@ -21,6 +21,9 @@ pnpm-debug.log*
 # vercel
 .vercel/
 
+# generated image candidates (pick your favorites, don't commit the whole batch)
+scripts/candidates/
+
 # macOS-specific files
 .DS_Store
 

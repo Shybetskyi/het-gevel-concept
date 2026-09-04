@@ -1,0 +1,26 @@
+[
+  {
+    "name": "home-hero",
+    "prompt": "Professional documentary-style photograph, shot on a real full-frame DSLR with a 50mm prime lens, natural soft daylight (not studio strobes), true-to-life muted color grading, authentic depth of field, subtle film-like grain — must read as an unedited real photograph, never a 3D render or illustration. No text, no watermark, no logos. Rear three-quarter view: we see the back of a mason working on a brick facade, facing the wall, away from the camera. He wears a spotless, well-fitted work coverall in the company's brand colors — dark charcoal-anthracite as the main body color, with a terracotta-orange accent panel across the shoulders and a terracotta stripe down the side of the back, like clean professional branded workwear, no logos or text printed on it, no dirt or stains. He is mid-action, arm raised, pressing fresh mortar into a joint with a small trowel. The brick wall is professionally laid, straight and level: the left two-thirds of the wall (from the camera's point of view) already has clean, uniform, freshly finished mortar joints; the right third still has the old, weathered, unfinished joints — one clear, clean line where his completed work meets the remaining section. Dutch brick row houses softly out of focus in the background, natural overcast daylight, shallow depth of field.",
+    "aspectRatio": "4:3",
+    "variants": 3
+  },
+  {
+    "name": "opdrachtgevers-team",
+    "prompt": "Professional documentary-style photograph, shot on a real full-frame DSLR, natural soft daylight, true-to-life muted color grading, authentic depth of field, subtle film grain — must read as a real photograph, never a render. No text, no watermark, no logos. Two construction workers in CLEAN, near-spotless dark workwear (no visible plaster splatter, no paint stains, no dirt marks on clothing at all) standing and consulting near an intact, professionally laid brick facade, one pointing at the mortar joints, the other holding a clipboard. Scaffolding partially visible in the background. The brickwork is clean and structurally intact: no cracks, no missing bricks, no damaged windows — only the mortar joints show slight age. Setting: Dutch brick row houses in the Netherlands.",
+    "aspectRatio": "4:3",
+    "variants": 3
+  },
+  {
+    "name": "overons-gevel",
+    "prompt": "Professional macro architectural photograph, shot on a real full-frame DSLR, natural soft daylight, true-to-life color grading, authentic depth of field, subtle film grain — must read as a real photograph, never a render. No text, no watermark, no logos, no people. A close-medium shot of ONE continuous intact brick wall, split down the middle: the left half has old grey, receded, weathered mortar joints, the right half has crisp fresh light-grey mortar joints — the brick color and condition is identical and undamaged on both sides, only the joints differ.",
+    "aspectRatio": "4:3",
+    "variants": 3
+  },
+  {
+    "name": "offerte-voltooid",
+    "prompt": "Professional documentary-style photograph, shot on a real full-frame DSLR, natural soft daylight, true-to-life color grading, authentic depth of field, subtle film grain — must read as a real photograph, never a render. No text, no watermark, no logos, no people, no scaffolding. A beautifully finished, fully renovated brick facade of a Dutch row house, crisp fresh mortar joints throughout, clean intact brick, golden-hour soft light, a proud finished-project feel.",
+    "aspectRatio": "3:4",
+    "variants": 3
+  }
+]
