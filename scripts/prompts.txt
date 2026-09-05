@@ -1,0 +1,99 @@
+=================================================================
+ПРОМПТИ ДЛЯ ГЕНЕРАЦІЇ ЗОБРАЖЕНЬ — Het Gevel Concept
+=================================================================
+Робочий файл: scripts/image-jobs.json (англійською — так надійніше
+для моделі). Тут — той самий текст плюс переклад українською для
+читання/редагування.
+
+Запуск: node scripts/generate-nano-banana.mjs
+Результати: scripts/candidates/<name>-1.jpg, -2.jpg, -3.jpg
+
+
+-----------------------------------------------------------------
+1. home-hero (Home, hero-фото)
+-----------------------------------------------------------------
+
+[EN]
+Professional documentary-style photograph, shot on a real full-frame DSLR with a 50mm prime lens, natural soft daylight (not studio strobes), true-to-life muted color grading, authentic depth of field, subtle film-like grain — must read as an unedited real photograph, never a 3D render or illustration. No text, no watermark, no logos. Rear three-quarter view: we see the back of a mason working on a brick facade, facing the wall, away from the camera. He wears a spotless, well-fitted work coverall in the company's brand colors — dark charcoal-anthracite as the main body color, with a terracotta-orange accent panel across the shoulders and a terracotta stripe down the side of the back, like clean professional branded workwear, no logos or text printed on it, no dirt or stains. He is mid-action, arm raised, pressing fresh mortar into a joint with a small trowel. IMPORTANT — this is mortar-joint (voegwerk) work only, never brick repair: the brick itself is completely intact, sound and undamaged everywhere in the frame (no cracks, no chips, no missing pieces, no old or weathered brick surface) — only the MORTAR JOINTS change condition. The left two-thirds of the wall (from the camera's point of view) already has clean, uniform, freshly finished mortar joints; the right third still has the old, weathered mortar joints (the brick there looks exactly as sound as everywhere else — only the joint mortar is old) — one clear, clean line where his completed work meets the remaining section. Dutch brick row houses softly out of focus in the background, natural overcast daylight, shallow depth of field.
+
+[UA переклад]
+Професійна документальна фотографія, знята на реальну повнокадрову дзеркальну камеру з об'єктивом 50mm, природне м'яке денне освітлення (не студійні спалахи), реалістична приглушена кольорокорекція, справжня глибина різкості, легке плівкове зерно — має виглядати як необроблена справжня фотографія, ніколи як 3D-рендер чи ілюстрація. Без тексту, без водяного знаку, без логотипів. Вигляд ззаду під три чверті: ми бачимо спину муляра, який працює на цегляному фасаді, обличчям до стіни, спиною до камери. На ньому — бездоганний, добре підігнаний робочий комбінезон у фірмових кольорах компанії: темний антрацитово-сірий як основний колір тіла, з теракотово-оранжевою вставкою на плечах і теракотовою смугою вздовж боку спини, як чистий професійний брендований робочий одяг, без логотипів чи напису на ньому, без бруду чи плям. Він у процесі роботи, рука піднята, притискає свіжий розчин у шов маленькою кельмою. ВАЖЛИВО — це робота зі швами (voegwerk), а не ремонт цегли: цегла повністю ціла, міцна й неушкоджена по всьому кадру (без тріщин, сколів, відсутніх шматків, без старого/вивітреного вигляду цегли) — змінюється лише стан ШВІВ. Ліві дві третини стіни (з погляду камери) вже мають чисті, рівномірні, свіжо оброблені шви; права третина ще має старі, вивітрені шви (цегла там виглядає так само міцно, як і всюди — старий лише розчин у шві) — одна чітка, охайна лінія, де завершена робота зустрічається з рештою ділянки. Нідерландські цегляні рядні будинки м'яко розмиті на задньому плані, природне хмарне освітлення, невелика глибина різкості.
+
+
+-----------------------------------------------------------------
+2. opdrachtgevers-team (Opdrachtgevers, фото команди)
+-----------------------------------------------------------------
+
+[EN]
+Professional documentary-style photograph, shot on a real full-frame DSLR, natural soft daylight, true-to-life muted color grading, authentic depth of field, subtle film grain — must read as a real photograph, never a render. No text, no watermark, no logos. Two construction workers in CLEAN, near-spotless dark workwear (no visible plaster splatter, no paint stains, no dirt marks on clothing at all) standing and consulting near a brick facade, one pointing at the mortar joints, the other holding a clipboard. Scaffolding partially visible in the background. IMPORTANT — this is mortar-joint (voegwerk) work only, never brick repair: the brick itself is completely intact, sound and undamaged everywhere in the frame — no cracks, no missing or broken bricks, no old/weathered brick surface, no damaged windows. Only the mortar joints show their age; the brick never does. Setting: Dutch brick row houses in the Netherlands.
+
+[UA переклад]
+Професійна документальна фотографія, знята на реальну повнокадрову дзеркальну камеру, природне м'яке денне освітлення, реалістична приглушена кольорокорекція, справжня глибина різкості, легке плівкове зерно — має виглядати як справжня фотографія, ніколи як рендер. Без тексту, без водяного знаку, без логотипів. Двоє будівельників у ЧИСТОМУ, майже бездоганному темному робочому одязі (жодних слідів розчину, фарби чи бруду на одязі) стоять і радяться біля цегляного фасаду, один вказує на шви, інший тримає планшет із записами. Риштування частково видно на задньому плані. ВАЖЛИВО — це робота зі швами (voegwerk), а не ремонт цегли: цегла повністю ціла, міцна й неушкоджена по всьому кадру — без тріщин, відсутніх чи побитих цеглин, без старого/вивітреного вигляду цегли, без пошкоджених вікон. Лише шви показують свій вік; цегла — ніколи. Місце дії: нідерландські цегляні рядні будинки.
+
+
+-----------------------------------------------------------------
+3. overons-gevel (Over ons, фото місії)
+-----------------------------------------------------------------
+
+[EN]
+Professional macro architectural photograph, shot on a real full-frame DSLR, natural soft daylight, true-to-life color grading, authentic depth of field, subtle film grain — must read as a real photograph, never a render. No text, no watermark, no logos, no people. A close-medium shot of ONE continuous brick wall, split down the middle: the left half has old grey, receded, weathered mortar joints, the right half has crisp fresh light-grey mortar joints. IMPORTANT — this is mortar-joint (voegwerk) work only, never brick repair: the brick itself is identical, completely intact and undamaged on both sides of the wall (same color, same condition, no cracks, no chips, no missing pieces anywhere) — the only thing that differs between left and right is the mortar-joint condition, never the brick.
+
+[UA переклад]
+Професійна макро-архітектурна фотографія, знята на реальну повнокадрову дзеркальну камеру, природне м'яке освітлення, реалістична кольорокорекція, справжня глибина різкості, легке плівкове зерно — має виглядати як справжня фотографія, ніколи як рендер. Без тексту, без водяного знаку, без логотипів, без людей. Середній крупний план ОДНІЄЇ суцільної цегляної стіни, поділеної навпіл: ліва половина має старі, сірі, всілені, вивітрені шви, права половина — чіткі свіжі світло-сірі шви. ВАЖЛИВО — це робота зі швами (voegwerk), а не ремонт цегли: цегла однакова, повністю ціла й неушкоджена з обох боків стіни (той самий колір, той самий стан, без тріщин, сколів, відсутніх шматків будь-де) — різниться лише стан шва, ніколи не цегла.
+
+
+-----------------------------------------------------------------
+4. offerte-voltooid (Offerte aanvragen, бічна панель)
+-----------------------------------------------------------------
+
+[EN]
+Professional documentary-style photograph, shot on a real full-frame DSLR, natural soft daylight, true-to-life color grading, authentic depth of field, subtle film grain — must read as a real photograph, never a render. No text, no watermark, no logos, no people, no scaffolding. A beautifully finished, fully renovated brick facade of a Dutch row house, crisp fresh mortar joints throughout. The brick itself is completely intact, sound and undamaged — clean, uniform brick with no cracks, chips or old/weathered look anywhere; only the mortar joints tell the story of the finished work. Golden-hour soft light, a proud finished-project feel.
+
+[UA переклад]
+Професійна документальна фотографія, знята на реальну повнокадрову дзеркальну камеру, природне м'яке освітлення, реалістична кольорокорекція, справжня глибина різкості, легке плівкове зерно — має виглядати як справжня фотографія, ніколи як рендер. Без тексту, без водяного знаку, без логотипів, без людей, без риштування. Красиво завершений, повністю відремонтований цегляний фасад нідерландського рядного будинку, чіткі свіжі шви по всій поверхні. Цегла повністю ціла, міцна й неушкоджена — чиста, рівномірна цегла без тріщин, сколів чи старого вигляду будь-де; лише шви розповідають історію завершеної роботи. М'яке "золоте" освітлення, відчуття гордості за завершений проєкт.
+
+
+-----------------------------------------------------------------
+5. voegwerk-closeup (Diensten/Voegwerk, банер)
+-----------------------------------------------------------------
+
+[EN]
+Professional documentary-style photograph, shot on a real full-frame DSLR with a 50mm prime lens, natural soft daylight, true-to-life muted color grading, authentic depth of field, subtle film-like grain — must read as an unedited real photograph, never a render. No text, no watermark, no logos, no visible brand names. An extreme close-up filling the frame with several rows of professionally laid, perfectly straight, intact red-orange brick. IMPORTANT — this shows an in-progress voegwerk (mortar-joint) job, never brick repair, so the WALL CONDITION must clearly show three distinct joint stages side by side, left to right: (1) on the left, joints that have already been raked out (uithakken) — empty, clean grooves between the bricks with bare brick edges, old mortar fully removed, ready for new mortar, no crumbling debris left in them; (2) in the middle, a hand holding a small pointing trowel loaded with fresh grey mortar, actively pressing and smoothing it into one horizontal joint, mid-stroke; (3) on the right, joints that are already freshly finished — smooth, clean, uniform new grey mortar. Across all three stages and the entire frame, the brick itself stays completely intact, sound and undamaged (no cracks, no chips, no missing pieces, no old/weathered brick surface) — only the mortar-joint condition changes from section to section. Natural overcast Dutch daylight.
+
+[UA переклад]
+Професійна документальна фотографія, знята на реальну повнокадрову дзеркальну камеру з об'єктивом 50mm, природне м'яке освітлення, реалістична приглушена кольорокорекція, справжня глибина різкості, легке плівкове зерно — має виглядати як необроблена справжня фотографія, ніколи як рендер. Без тексту, без водяного знаку, без логотипів, без назв бренду. Екстремальний крупний план на весь кадр із кількома рядами професійно викладеної, ідеально рівної, цілої червоно-жовтогарячої цегли. ВАЖЛИВО — це процес роботи зі швами (voegwerk), а не ремонт цегли, тож СТАН СТІНИ має чітко показувати три різні стадії шва поруч, зліва направо: (1) зліва — шви, які вже виколупано/вирубано (uithakken) — порожні, чисті борозни між цеглинами з оголеними краями цегли, старий розчин повністю видалено, готово до нового розчину, без розсипаної старої суміші; (2) посередині — рука з кельмою, наповненою свіжим сірим розчином, притискає й розгладжує його в один горизонтальний шов, у процесі руху; (3) справа — шви, які вже свіжозроблені — гладкий, чистий, рівномірний новий сірий розчин. У всіх трьох стадіях і по всьому кадру цегла лишається повністю цілою, міцною й неушкодженою (без тріщин, сколів, відсутніх шматків, без старого/вивітреного вигляду цегли) — змінюється лише стан шва. Природне хмарне нідерландське освітлення.
+
+
+-----------------------------------------------------------------
+6. wall-voeg-verdiept (Diensten/Voegwerk — Schaduwvoeg, "западина")
+-----------------------------------------------------------------
+
+[EN]
+Professional macro architectural photograph of a section of a professionally built brick wall, shot on a real full-frame DSLR with a 50mm prime lens, natural soft daylight, true-to-life muted color grading, authentic depth of field, subtle film-like grain — must read as an unedited real photograph, never a render. No text, no watermark, no logos. Strong raking side-light from the left so the mortar-joint relief casts clear, legible shadows. The brickwork is immaculate: perfectly straight, level courses, consistent spacing, no crooked bricks, no gaps, no chips, no cracks — completely intact and undamaged brick, this is mortar-joint work only, never brick repair. The mortar in every joint is smooth, uniformly light-grey, cleanly tooled — finished, professional-quality work. Sharp focus across 3-4 courses of brick, no people. The horizontal mortar joints are evenly RECESSED about 1 centimeter behind the face of the bricks, a consistent, clean-edged setback along the entire joint — so each brick's bottom edge casts one crisp, uniform shadow line onto the recessed mortar beneath it (a textbook schaduwvoeg / shadow-joint profile).
+
+[UA переклад]
+Професійна макро-архітектурна фотографія ділянки професійно збудованої цегляної стіни, знята на реальну повнокадрову дзеркальну камеру з об'єктивом 50mm, природне м'яке освітлення, реалістична приглушена кольорокорекція, справжня глибина різкості, легке плівкове зерно — має виглядати як справжня фотографія, ніколи як рендер. Без тексту, без водяного знаку, без логотипів. Сильне бічне світло зліва під кутом, щоб рельєф шва відкидав чіткі, зрозумілі тіні. Кладка бездоганна: ідеально рівні, горизонтальні ряди, однакова відстань, без кривих цеглин, без прогалин, без сколів, без тріщин — повністю ціла й неушкоджена цегла, це лише робота зі швами, а не ремонт цегли. Розчин у кожному шві гладкий, рівномірно світло-сірий, охайно оброблений — завершена, професійна робота. Різкий фокус на 3-4 рядах цегли, без людей. Горизонтальні шви рівномірно ЗАГЛИБЛЕНІ приблизно на 1 сантиметр за площину цегли, послідовне, чітке заглиблення по всій довжині шва — так що нижній край кожної цеглини відкидає одну чітку, рівномірну тінь на заглиблений розчин під нею (еталонний профіль schaduwvoeg / шов-тінь).
+
+
+-----------------------------------------------------------------
+7. wall-voeg-vol (Diensten/Voegwerk — Platvolle voeg, "врівень")
+-----------------------------------------------------------------
+
+[EN]
+Professional macro architectural photograph of a section of a professionally built brick wall, shot on a real full-frame DSLR with a 50mm prime lens, natural soft daylight, true-to-life muted color grading, authentic depth of field, subtle film-like grain — must read as an unedited real photograph, never a render. No text, no watermark, no logos. Strong raking side-light from the left so the mortar-joint relief casts clear, legible shadows. The brickwork is immaculate: perfectly straight, level courses, consistent spacing, no crooked bricks, no gaps, no chips, no cracks — completely intact and undamaged brick, this is mortar-joint work only, never brick repair. The mortar in every joint is smooth, uniformly light-grey, cleanly tooled — finished, professional-quality work. Sharp focus across 3-4 courses of brick, no people. The mortar joints are perfectly FLUSH with the face of the bricks — one smooth, continuous, level plane across brick and mortar with no step, no shadow line and no protrusion anywhere (a textbook platvolle voeg / flush-joint profile).
+
+[UA переклад]
+Професійна макро-архітектурна фотографія ділянки професійно збудованої цегляної стіни, знята на реальну повнокадрову дзеркальну камеру з об'єктивом 50mm, природне м'яке освітлення, реалістична приглушена кольорокорекція, справжня глибина різкості, легке плівкове зерно — має виглядати як справжня фотографія, ніколи як рендер. Без тексту, без водяного знаку, без логотипів. Сильне бічне світло зліва під кутом, щоб рельєф шва відкидав чіткі, зрозумілі тіні. Кладка бездоганна: ідеально рівні, горизонтальні ряди, однакова відстань, без кривих цеглин, без прогалин, без сколів, без тріщин — повністю ціла й неушкоджена цегла, це лише робота зі швами, а не ремонт цегли. Розчин у кожному шві гладкий, рівномірно світло-сірий, охайно оброблений — завершена, професійна робота. Різкий фокус на 3-4 рядах цегли, без людей. Шви розчину ідеально ВРІВЕНЬ із площиною цегли — одна гладка, суцільна, рівна поверхня цегли й розчину без жодного перепаду, тіні чи виступу (еталонний профіль platvolle voeg / шов урівень).
+
+
+-----------------------------------------------------------------
+8. wall-voeg-uitstekend (Diensten/Voegwerk — Knipvoeg, "виступ")
+-----------------------------------------------------------------
+
+[EN]
+Professional macro architectural photograph of a section of a professionally built brick wall, shot on a real full-frame DSLR with a 50mm prime lens, natural soft daylight, true-to-life muted color grading, authentic depth of field, subtle film-like grain — must read as an unedited real photograph, never a render. No text, no watermark, no logos. Strong raking side-light from the left so the mortar-joint relief casts clear, legible shadows. The brickwork is immaculate: perfectly straight, level courses, consistent spacing, no crooked bricks, no gaps, no chips, no cracks — completely intact and undamaged brick, this is mortar-joint work only, never brick repair. The mortar in every joint is smooth, uniformly light-grey, cleanly tooled — finished, professional-quality work. Sharp focus across 3-4 courses of brick, no people. The mortar joints evenly PROTRUDE a consistent few millimeters past the face of the bricks, forming a neat, deliberate rounded convex ridge of mortar along every joint that sits proud of the brick surface — a clean, uniform raised-mortar profile (a textbook knipvoeg / protruding-joint profile), catching a crisp highlight along the top of each ridge.
+
+[UA переклад]
+Професійна макро-архітектурна фотографія ділянки професійно збудованої цегляної стіни, знята на реальну повнокадрову дзеркальну камеру з об'єктивом 50mm, природне м'яке освітлення, реалістична приглушена кольорокорекція, справжня глибина різкості, легке плівкове зерно — має виглядати як справжня фотографія, ніколи як рендер. Без тексту, без водяного знаку, без логотипів. Сильне бічне світло зліва під кутом, щоб рельєф шва відкидав чіткі, зрозумілі тіні. Кладка бездоганна: ідеально рівні, горизонтальні ряди, однакова відстань, без кривих цеглин, без прогалин, без сколів, без тріщин — повністю ціла й неушкоджена цегла, це лише робота зі швами, а не ремонт цегли. Розчин у кожному шві гладкий, рівномірно світло-сірий, охайно оброблений — завершена, професійна робота. Різкий фокус на 3-4 рядах цегли, без людей. Шви розчину рівномірно ВИСТУПАЮТЬ на кілька міліметрів за площину цегли, утворюючи охайний, свідомо округлий опуклий валик розчину вздовж кожного шва, що виступає над поверхнею цегли — чистий, рівномірний профіль виступаючого розчину (еталонний профіль knipvoeg / виступаючий шов), з чітким відблиском уздовж верхівки кожного валика.
+
+=================================================================
