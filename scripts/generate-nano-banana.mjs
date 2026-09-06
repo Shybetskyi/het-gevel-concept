@@ -104,7 +104,10 @@ async function main() {
   const outDir = path.join(root, 'scripts', 'candidates');
   mkdirSync(outDir, { recursive: true });
 
-  for (const job of jobs) {
+  const filterNames = process.argv.slice(2);
+  const selected = filterNames.length ? jobs.filter((j) => filterNames.includes(j.name)) : jobs;
+
+  for (const job of selected) {
     const count = job.variants ?? 3;
     for (let v = 1; v <= count; v++) {
       // Sequential on purpose: parallel requests to this API are unreliable.
