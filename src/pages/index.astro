@@ -4,7 +4,55 @@ import Layout from '../layouts/Layout.astro';
 import CtaBand from '../components/CtaBand.astro';
 import ReviewsCarousel from '../components/ReviewsCarousel.astro';
 import GoogleMap from '../components/GoogleMap.astro';
+import TrustSqueeze from '../components/TrustSqueeze.astro';
 import heroImage from '../assets/generated/home-hero.jpg';
+import trustWerkwijze from '../assets/generated/trust-werkwijze.jpg';
+import trustMaterialen from '../assets/generated/trust-materialen.jpg';
+import trustVakmanschap from '../assets/generated/trust-vakmanschap.jpg';
+import trustResultaat from '../assets/generated/offerte-voltooid.jpg';
+
+const trustPanels = [
+  {
+    number: '01',
+    label: 'Werkwijze',
+    title: 'Heldere afspraken, van A tot Z',
+    description:
+      'Voor we beginnen leggen we alles vast: de werkzaamheden, de planning en een vaste prijs — geen verrassingen achteraf. U weet vooraf precies waar u aan toe bent.',
+    actionLabel: 'Zo werken wij',
+    image: trustWerkwijze,
+    imageAlt: 'Vakman bespreekt de werkzaamheden met een klant aan de hand van een schets',
+  },
+  {
+    number: '02',
+    label: 'Kwaliteit',
+    title: 'Materialen die decennia meegaan',
+    description:
+      'Wij voegen met vorstbestendige, kalkgebonden voegmortel: ademend en flexibel, en aanzienlijk beter bestand tegen vocht dan gewone cementmortel. Op verzoek hydrofoberen we de gevel na — dat houdt slagregen buiten terwijl de muur kan blijven ademen, voor een droger en energiezuiniger huis.',
+    actionLabel: 'Onze materialen',
+    image: trustMaterialen,
+    imageAlt: 'Close-up van voegmortel, baksteen en gereedschap',
+  },
+  {
+    number: '03',
+    label: 'Vakmanschap',
+    title: 'Vakmensen met oog voor detail',
+    description:
+      'Al onze voegwerkspecialisten hebben meer dan 10 jaar ervaring en werken volgens de laatste vaktechnieken — netjes, punctueel en met respect voor uw woning.',
+    actionLabel: 'Ons team',
+    image: trustVakmanschap,
+    imageAlt: 'Ervaren vakman in bedrijfskleding voor een bakstenen gevel',
+  },
+  {
+    number: '04',
+    label: 'Resultaat',
+    title: 'Een gevel om trots op te zijn',
+    description:
+      'Een strak gevoegde, beschermde gevel gaat tientallen jaren mee en verhoogt direct de waarde en uitstraling van uw pand.',
+    actionLabel: 'Bekijk het resultaat',
+    image: trustResultaat,
+    imageAlt: 'Volledig gerenoveerde bakstenen gevel met fris voegwerk',
+  },
+];
 
 const services = [
   {
@@ -126,6 +174,21 @@ const reviews = [
     <a href="/diensten/" class="mt-6 inline-block text-sm font-semibold text-accent hover:underline">
       Alle diensten bekijken &rarr;
     </a>
+  </section>
+
+  <!-- Vertrouwen -->
+  <section class="bg-primary py-16">
+    <div class="mx-auto max-w-6xl px-5">
+      <h2 class="font-display text-2xl font-semibold uppercase tracking-wide text-sand">
+        Waarom Het Gevel Concept
+      </h2>
+      <p class="mt-3 max-w-2xl text-sand-2/80">
+        Vakwerk begint bij vertrouwen. Zo pakken wij het aan, van eerste afspraak tot een gevel die jaren meegaat.
+      </p>
+      <div class="mt-8">
+        <TrustSqueeze panels={trustPanels} />
+      </div>
+    </div>
   </section>
 
   <!-- Werkgebied -->

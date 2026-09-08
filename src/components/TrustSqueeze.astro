@@ -1,0 +1,196 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Panel {
+  number: string;
+  label: string;
+  title: string;
+  description: string;
+  actionLabel: string;
+  image: ImageMetadata;
+  imageAlt: string;
+}
+
+interface Props {
+  panels: Panel[];
+}
+
+const { panels } = Astro.props;
+---
+
+<div class="squeeze-row" id="trust-squeeze">
+  {panels.map((panel, i) => (
+    <div class={`squeeze-panel ${i === 0 ? 'is-active' : ''}`} data-index={i}>
+      <button type="button" class="squeeze-trigger" aria-expanded={i === 0 ? 'true' : 'false'}>
+        <div class="squeeze-media">
+          <Image
+            src={panel.image}
+            alt={panel.imageAlt}
+            class="squeeze-img"
+            widths={[400, 800, 1200]}
+            sizes="(min-width: 768px) 40vw, 100vw"
+          />
+          <div class="squeeze-scrim" aria-hidden="true"></div>
+          <span class="squeeze-number" aria-hidden="true">{panel.number}</span>
+          <span class="squeeze-tag">{panel.label}</span>
+          <div class="squeeze-content">
+            <h3 class="font-display text-lg font-semibold uppercase tracking-wide text-sand sm:text-xl">
+              {panel.title}
+            </h3>
+            <p class="mt-2 max-w-md text-sm leading-relaxed text-sand-2/90">{panel.description}</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold uppercase tracking-wide text-accent">
+              {panel.actionLabel} &rarr;
+            </span>
+          </div>
+        </div>
+      </button>
+    </div>
+  ))}
+</div>
+
+<style>
+  .squeeze-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .squeeze-panel {
+    border-radius: var(--radius-brand);
+    overflow: hidden;
+  }
+
+  .squeeze-trigger {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .squeeze-media {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .squeeze-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 700ms ease;
+  }
+
+  .squeeze-trigger:hover .squeeze-img {
+    transform: scale(1.04);
+  }
+
+  .squeeze-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(24, 26, 29, 0.88) 0%, rgba(24, 26, 29, 0.35) 45%, rgba(24, 26, 29, 0.15) 100%);
+  }
+
+  .squeeze-number {
+    position: absolute;
+    top: 1rem;
+    left: 1.1rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    opacity: 0.9;
+  }
+
+  .squeeze-tag {
+    position: absolute;
+    left: 1.1rem;
+    bottom: 1rem;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-sand);
+    transition: opacity 250ms ease;
+  }
+
+  .squeeze-content {
+    position: absolute;
+    left: 1.1rem;
+    right: 1.1rem;
+    bottom: 1rem;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 350ms ease, transform 350ms ease;
+    pointer-events: none;
+  }
+
+  .squeeze-panel.is-active .squeeze-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .squeeze-panel.is-active .squeeze-tag {
+    opacity: 0;
+  }
+
+  @media (min-width: 768px) {
+    .squeeze-row {
+      flex-direction: row;
+      height: 26rem;
+    }
+
+    .squeeze-panel {
+      flex: 1 1 0%;
+      min-width: 0;
+      height: 100%;
+      transition: flex-grow 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .squeeze-panel.is-active {
+      flex-grow: 4.5;
+    }
+
+    .squeeze-media {
+      aspect-ratio: auto;
+    }
+
+    .squeeze-content {
+      right: 1.5rem;
+      left: 1.25rem;
+      bottom: 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  const row = document.getElementById('trust-squeeze');
+  if (row) {
+    const panels = Array.from(row.querySelectorAll<HTMLElement>('.squeeze-panel'));
+
+    function activate(panel: HTMLElement) {
+      for (const p of panels) {
+        const isActive = p === panel;
+        p.classList.toggle('is-active', isActive);
+        p.querySelector('.squeeze-trigger')?.setAttribute('aria-expanded', String(isActive));
+      }
+    }
+
+    panels.forEach((panel) => {
+      const trigger = panel.querySelector('.squeeze-trigger');
+      trigger?.addEventListener('click', () => activate(panel));
+      trigger?.addEventListener('focus', () => {
+        if (window.matchMedia('(min-width: 768px)').matches) activate(panel);
+      });
+      if (window.matchMedia('(hover: hover) and (min-width: 768px)').matches) {
+        panel.addEventListener('mouseenter', () => activate(panel));
+      }
+    });
+  }
+</script>
