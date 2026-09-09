@@ -33,15 +33,12 @@ const { panels } = Astro.props;
           />
           <div class="squeeze-scrim" aria-hidden="true"></div>
           <span class="squeeze-number" aria-hidden="true">{panel.number}</span>
-          <span class="squeeze-tag">{panel.label}</span>
+          <span class="squeeze-heading">{panel.actionLabel}</span>
           <div class="squeeze-content">
             <h3 class="font-display text-lg font-semibold uppercase tracking-wide text-sand sm:text-xl">
               {panel.title}
             </h3>
             <p class="mt-2 max-w-md text-sm leading-relaxed text-sand-2/90">{panel.description}</p>
-            <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold uppercase tracking-wide text-accent">
-              {panel.actionLabel} &rarr;
-            </span>
           </div>
         </div>
       </button>
@@ -107,17 +104,25 @@ const { panels } = Astro.props;
     opacity: 0.9;
   }
 
-  .squeeze-tag {
+  .squeeze-heading {
     position: absolute;
-    left: 1.1rem;
-    bottom: 1rem;
+    top: 1rem;
+    right: 1.1rem;
+    max-width: 65%;
     font-family: var(--font-display);
-    font-size: 0.75rem;
+    font-size: 1.05rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
+    text-align: right;
     color: var(--color-sand);
-    transition: opacity 250ms ease;
+    line-height: 1.15;
+  }
+
+  @media (min-width: 768px) {
+    .squeeze-heading {
+      font-size: 1.25rem;
+    }
   }
 
   .squeeze-content {
@@ -134,10 +139,6 @@ const { panels } = Astro.props;
   .squeeze-panel.is-active .squeeze-content {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  .squeeze-panel.is-active .squeeze-tag {
-    opacity: 0;
   }
 
   @media (min-width: 768px) {
