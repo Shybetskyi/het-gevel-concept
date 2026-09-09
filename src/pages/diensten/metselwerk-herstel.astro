@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import ServiceAccordion from '../../components/ServiceAccordion.astro';
+import metselwerkImage from '../../assets/generated/metselwerk-herstel.jpg';
+
+const accordion = [
+  {
+    question: 'Hoe het werkt',
+    answer:
+      'We inspecteren de gevel en bepalen welke stenen beschadigd zijn. Het voegwerk rond een beschadigde steen wordt voorzichtig verwijderd, waarna de steen in delen wordt uitgenomen zonder omliggend metselwerk te beschadigen. De nieuwe steen wordt met de juiste mortelsamenstelling en in hetzelfde verband gemetseld, en het voegwerk wordt netjes afgewerkt.',
+  },
+  {
+    question: 'Waarom dit belangrijk is',
+    answer:
+      'Vorstschade is de meest voorkomende oorzaak: regenwater trekt in steen en voeg, bevriest bij lage temperaturen en zet uit, waardoor de steen afbrokkelt. Eén beschadigde steen die blijft zitten, trekt steeds meer vocht aan en tast op termijn ook de stenen ernaast aan.',
+  },
+  {
+    question: 'Wat het oplevert',
+    answer:
+      'Een gevel die er weer strak en gaaf uitziet, met vervangen stenen die qua formaat, kleur en structuur niet opvallen tussen het bestaande metselwerk — en, minstens zo belangrijk, de oorzaak van de schade (vocht, voeg of scheur) wordt tegelijk aangepakt.',
+  },
+  {
+    question: 'Materialen die we gebruiken',
+    answer:
+      'Baksteen die qua formaat, kleur en structuur bij uw bestaande gevel past, metselmortel afgestemd op de steensoort, en dezelfde vorstbestendige voegmortel die we ook bij regulier voegwerk gebruiken.',
+  },
+];
+---
+
+<Layout
+  title="Metselwerk herstel"
+  description="Metselwerk herstellen door Het Gevel Concept — beschadigde of verweerde stenen vakkundig vervangen, in het juiste verband en dezelfde steensoort."
+>
+  <section class="mx-auto max-w-6xl px-5 py-16">
+    <p class="text-sm font-semibold uppercase tracking-wide text-accent">
+      <a href="/diensten/" class="hover:underline">Diensten</a> / Metselwerk herstel
+    </p>
+    <h1 class="mt-2 font-display text-4xl font-bold text-primary">Metselwerk herstel</h1>
+    <p class="mt-4 max-w-2xl text-primary/75">
+      Beschadigde of verweerde stenen vakkundig vervangen, in het juiste verband en dezelfde steensoort — zodat de
+      reparatie niet opvalt.
+    </p>
+
+    <Image
+      src={metselwerkImage}
+      alt="Vakman vervangt een beschadigde baksteen in een verder intacte gevel"
+      class="mt-12 aspect-[21/9] w-full rounded-brand object-cover"
+      widths={[600, 1000, 1600]}
+      sizes="100vw"
+    />
+
+    <h2 class="mt-16 font-display text-lg font-semibold uppercase tracking-wide text-primary">In detail</h2>
+    <div class="mt-6">
+      <ServiceAccordion items={accordion} />
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

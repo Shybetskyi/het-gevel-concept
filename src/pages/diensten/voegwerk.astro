@@ -2,10 +2,34 @@
 import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import ServiceAccordion from '../../components/ServiceAccordion.astro';
 import closeupImage from '../../assets/generated/voegwerk-closeup.jpg';
 import knipvoegImage from '../../assets/generated/wall-voeg-uitstekend.jpg';
 import platvolImage from '../../assets/generated/wall-voeg-vol.jpg';
 import schaduwvoegImage from '../../assets/generated/wall-voeg-verdiept.jpg';
+
+const accordion = [
+  {
+    question: 'Hoe het werkt',
+    answer:
+      'Oud, verweerd voegwerk wordt met precisiegereedschap uitgehakt tot op de juiste diepte, zonder schade aan de bakstenen. Daarna brengen we nieuw voegwerk aan dat qua kleur en profiel aansluit op het bestaande metselverband, in knipvoeg, platvolle voeg of schaduwvoeg.',
+  },
+  {
+    question: 'Waarom dit belangrijk is',
+    answer:
+      'De voeg is het meest kwetsbare onderdeel van een gevel. Verweerd voegwerk laat water in het metselwerk doordringen, wat bij vorst tot scheuren en beschadigde stenen leidt — precies het soort schade waarvoor metselwerk- en scheurherstel nodig wordt.',
+  },
+  {
+    question: 'Wat het oplevert',
+    answer:
+      'Een strakke, waterdichte gevel die weer jaren meekan, zonder dat de originele uitstraling van het metselverband verloren gaat.',
+  },
+  {
+    question: 'Materialen die we gebruiken',
+    answer:
+      'Vorstbestendige, kalkgebonden voegmortel: ademend en flexibel, en aanzienlijk beter bestand tegen vocht dan gewone cementmortel — die kan tot 20% minder ademend zijn. De kleur en korrel van de mortel stemmen we af op de bestaande gevel.',
+  },
+];
 
 const voegtypes = [
   {
@@ -83,6 +107,11 @@ const voegtypes = [
           <p class="mt-2 text-sm text-primary/75">{v.text}</p>
         </div>
       ))}
+    </div>
+
+    <h2 class="mt-16 font-display text-lg font-semibold uppercase tracking-wide text-primary">In detail</h2>
+    <div class="mt-6">
+      <ServiceAccordion items={accordion} />
     </div>
   </section>
 

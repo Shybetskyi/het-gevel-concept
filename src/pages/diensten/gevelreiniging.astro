@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import ServiceAccordion from '../../components/ServiceAccordion.astro';
+import voorImage from '../../assets/generated/gevelreiniging-voor.jpg';
+import naImage from '../../assets/generated/gevelreiniging-na.jpg';
+
+const accordion = [
+  {
+    question: 'Hoe het werkt',
+    answer:
+      'We beoordelen eerst het type vervuiling en de baksteen zelf, en kiezen daarop de juiste reinigingsmethode — meestal laagdrukreiniging met een speciaal reinigingsmiddel, soms aangevuld met handmatig borstelen bij hardnekkige aanslag. Voegwerk en kwetsbare details worden ontzien.',
+  },
+  {
+    question: 'Waarom dit belangrijk is',
+    answer:
+      'Aanslag, mos en algen houden vocht vast tegen de gevel aan. Op de lange termijn versnelt dat vorstschade en tast het de voeg aan — regelmatige reiniging is de goedkoopste vorm van gevelonderhoud.',
+  },
+  {
+    question: 'Wat het oplevert',
+    answer:
+      'Een zichtbaar frissere gevel, minder vochtbelasting op steen en voeg, en een goede, schone ondergrond — ideaal vlak vóór impregneren, waarvoor een schone gevel noodzakelijk is.',
+  },
+  {
+    question: 'Materialen die we gebruiken',
+    answer:
+      'Professionele, biologisch afbreekbare reinigingsmiddelen afgestemd op baksteen, en laagdrukapparatuur die de steen en het voegwerk niet beschadigt — geen agressief hogedrukstralen dat de voeg uitspoelt.',
+  },
+];
+---
+
+<Layout
+  title="Gevelreiniging"
+  description="Professionele gevelreiniging door Het Gevel Concept — aanslag, mos en vervuiling verwijderd zonder de steen of het voegwerk te beschadigen."
+>
+  <section class="mx-auto max-w-6xl px-5 py-16">
+    <p class="text-sm font-semibold uppercase tracking-wide text-accent">
+      <a href="/diensten/" class="hover:underline">Diensten</a> / Gevelreiniging
+    </p>
+    <h1 class="mt-2 font-display text-4xl font-bold text-primary">Gevelreiniging</h1>
+    <p class="mt-4 max-w-2xl text-primary/75">
+      Een schone gevel gaat jaren langer mee. Wij verwijderen aanslag, mos en vervuiling zonder de steen of het
+      voegwerk te beschadigen.
+    </p>
+
+    <div class="mt-12 grid grid-cols-1 gap-2 sm:grid-cols-2">
+      <div class="relative">
+        <Image
+          src={voorImage}
+          alt="Vervuilde bakstenen gevel voor reiniging"
+          class="aspect-video w-full rounded-brand object-cover"
+          widths={[400, 800]}
+          sizes="50vw"
+        />
+        <span class="absolute left-2 top-2 rounded-brand bg-primary px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-sand">
+          Voor
+        </span>
+      </div>
+      <div class="relative">
+        <Image
+          src={naImage}
+          alt="Schone bakstenen gevel na reiniging"
+          class="aspect-video w-full rounded-brand object-cover"
+          widths={[400, 800]}
+          sizes="50vw"
+        />
+        <span class="absolute left-2 top-2 rounded-brand bg-accent px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-paper">
+          Na
+        </span>
+      </div>
+    </div>
+
+    <h2 class="mt-16 font-display text-lg font-semibold uppercase tracking-wide text-primary">In detail</h2>
+    <div class="mt-6">
+      <ServiceAccordion items={accordion} />
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

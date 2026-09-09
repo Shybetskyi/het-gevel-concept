@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logoIcon from '../assets/logo-icon.png';
-import { NAV_LINKS } from '../consts';
+import { NAV_LINKS, SERVICES } from '../consts';
 
 const currentPath = Astro.url.pathname;
 ---
@@ -17,15 +17,50 @@ const currentPath = Astro.url.pathname;
 
     <nav class="hidden items-center gap-7 md:flex">
       {NAV_LINKS.map((link) => (
-        <a
-          href={link.href}
-          class:list={[
-            'font-body text-sm font-semibold uppercase tracking-wide text-primary/80 hover:text-accent',
-            (link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href)) && 'text-accent',
-          ]}
-        >
-          {link.label}
-        </a>
+        link.href === '/diensten/' ? (
+          <div class="group relative">
+            <a
+              href={link.href}
+              class:list={[
+                'flex items-center gap-1 font-body text-sm font-semibold uppercase tracking-wide text-primary/80 hover:text-accent',
+                currentPath.startsWith(link.href) && 'text-accent',
+              ]}
+            >
+              {link.label}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </a>
+            <div class="invisible absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-3 opacity-0 transition duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <div class="rounded-brand border border-sand-2 bg-paper p-2 shadow-lg">
+                {SERVICES.map((service) => (
+                  <a
+                    href={`/diensten/${service.slug}/`}
+                    class="block rounded-brand px-4 py-2.5 font-body text-sm font-semibold text-primary hover:bg-sand hover:text-accent"
+                  >
+                    {service.title}
+                  </a>
+                ))}
+                <a
+                  href="/diensten/"
+                  class="mt-1 block rounded-brand px-4 py-2.5 font-body text-sm font-semibold uppercase tracking-wide text-accent hover:bg-sand"
+                >
+                  Alle diensten &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <a
+            href={link.href}
+            class:list={[
+              'font-body text-sm font-semibold uppercase tracking-wide text-primary/80 hover:text-accent',
+              (link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href)) && 'text-accent',
+            ]}
+          >
+            {link.label}
+          </a>
+        )
       ))}
     </nav>
 
@@ -52,9 +87,23 @@ const currentPath = Astro.url.pathname;
 
   <nav id="mobile-menu" class="hidden flex-col gap-1 border-t border-sand-2 bg-paper px-5 py-4 md:hidden">
     {NAV_LINKS.map((link) => (
-      <a href={link.href} class="rounded-brand px-2 py-2.5 font-body text-sm font-semibold uppercase text-primary hover:bg-sand">
-        {link.label}
-      </a>
+      <>
+        <a href={link.href} class="rounded-brand px-2 py-2.5 font-body text-sm font-semibold uppercase text-primary hover:bg-sand">
+          {link.label}
+        </a>
+        {link.href === '/diensten/' && (
+          <div class="ml-3 flex flex-col gap-0.5 border-l border-sand-2 pl-3">
+            {SERVICES.map((service) => (
+              <a
+                href={`/diensten/${service.slug}/`}
+                class="rounded-brand px-2 py-2 font-body text-sm text-primary/80 hover:bg-sand hover:text-accent"
+              >
+                {service.title}
+              </a>
+            ))}
+          </div>
+        )}
+      </>
     ))}
     <a
       href="/contact/offerte-aanvragen/"

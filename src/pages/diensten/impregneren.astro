@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import ServiceAccordion from '../../components/ServiceAccordion.astro';
+import impregnerenImage from '../../assets/generated/impregneren.jpg';
+
+const accordion = [
+  {
+    question: 'Hoe het werkt',
+    answer:
+      'Na een grondige gevelreiniging brengen we een hydrofoberend (waterafstotend) middel aan, meestal met een lagedruksproeier, in een gelijkmatige, dekkende laag over de hele bakstenen gevel.',
+  },
+  {
+    question: 'Waarom dit belangrijk is',
+    answer:
+      'Onbehandelde baksteen neemt regenwater op. Bij vorst zet dat water uit en ontstaan scheurtjes en afbrokkeling — precies de vorstschade die tot metselwerkherstel leidt. Impregneren voorkomt dat probleem bij de bron.',
+  },
+  {
+    question: 'Wat het oplevert',
+    answer:
+      'Een droge gevel die water afstoot maar wel blijft ademen — waterdamp uit de muur kan nog naar buiten. Dat betekent minder vochtschade, minder kans op vorstschade en, doordat de muur droger blijft, een beter geïsoleerd en energiezuiniger huis.',
+  },
+  {
+    question: 'Materialen die we gebruiken',
+    answer:
+      'Een siloxaan- of silaangebaseerd hydrofoberingsmiddel — kleurloos, UV-bestendig en dampopen, zodat het uiterlijk van de gevel niet verandert en de steen kan blijven ademen. Verbruik ligt doorgaans tussen 0,7 en 1,5 liter per m², afhankelijk van de poreusheid van de steen.',
+  },
+];
+---
+
+<Layout
+  title="Impregneren"
+  description="Gevel impregneren (hydrofoberen) door Het Gevel Concept — waterafstotende, ademende bescherming tegen vocht en vorstschade."
+>
+  <section class="mx-auto max-w-6xl px-5 py-16">
+    <p class="text-sm font-semibold uppercase tracking-wide text-accent">
+      <a href="/diensten/" class="hover:underline">Diensten</a> / Impregneren
+    </p>
+    <h1 class="mt-2 font-display text-4xl font-bold text-primary">Impregneren</h1>
+    <p class="mt-4 max-w-2xl text-primary/75">
+      Een waterafstotende, ademende laag beschermt uw gevel tegen vocht en vorstschade — zonder de steen af te
+      sluiten.
+    </p>
+
+    <Image
+      src={impregnerenImage}
+      alt="Vakman brengt impregneermiddel aan op een bakstenen gevel"
+      class="mt-12 aspect-[21/9] w-full rounded-brand object-cover"
+      widths={[600, 1000, 1600]}
+      sizes="100vw"
+    />
+
+    <h2 class="mt-16 font-display text-lg font-semibold uppercase tracking-wide text-primary">In detail</h2>
+    <div class="mt-6">
+      <ServiceAccordion items={accordion} />
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

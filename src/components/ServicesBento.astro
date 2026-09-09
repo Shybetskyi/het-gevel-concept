@@ -1,0 +1,64 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Tile {
+  slug: string;
+  title: string;
+  short: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  span?: 'lg' | 'md' | 'full';
+}
+
+interface Props {
+  tiles: Tile[];
+}
+
+const { tiles } = Astro.props;
+
+const spanClass: Record<NonNullable<Tile['span']>, string> = {
+  lg: 'lg:col-span-4',
+  md: 'lg:col-span-2',
+  full: 'lg:col-span-6',
+};
+---
+
+<div class="grid grid-cols-1 gap-4 lg:grid-cols-6">
+  {tiles.map((tile) => (
+    <a
+      href={`/diensten/${tile.slug}/`}
+      class:list={[
+        'bento-tile group relative flex overflow-hidden rounded-brand',
+        spanClass[tile.span ?? 'md'],
+        tile.span === 'full' ? 'h-56' : 'h-80',
+      ]}
+    >
+      <Image
+        src={tile.image}
+        alt={tile.imageAlt}
+        class="bento-img absolute inset-0 h-full w-full object-cover"
+        widths={[400, 800, 1200]}
+        sizes="(min-width: 1024px) 40vw, 100vw"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-primary/5"></div>
+      <div class="relative z-10 mt-auto flex flex-col p-6">
+        <h3 class="font-display text-xl font-semibold uppercase tracking-wide text-sand">{tile.title}</h3>
+        <p class="mt-2 max-w-md text-sm leading-relaxed text-sand-2/85">{tile.short}</p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold uppercase tracking-wide text-accent">
+          Meer weten &rarr;
+        </span>
+      </div>
+    </a>
+  ))}
+</div>
+
+<style>
+  .bento-img {
+    transition: transform 600ms ease;
+  }
+
+  .bento-tile:hover .bento-img {
+    transform: scale(1.06);
+  }
+</style>

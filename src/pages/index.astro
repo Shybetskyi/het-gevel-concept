@@ -5,11 +5,28 @@ import CtaBand from '../components/CtaBand.astro';
 import ReviewsCarousel from '../components/ReviewsCarousel.astro';
 import GoogleMap from '../components/GoogleMap.astro';
 import TrustSqueeze from '../components/TrustSqueeze.astro';
+import ServicesBento from '../components/ServicesBento.astro';
+import { SERVICES } from '../consts';
 import heroImage from '../assets/generated/home-hero.jpg';
 import trustWerkwijze from '../assets/generated/trust-werkwijze.jpg';
 import trustMaterialen from '../assets/generated/trust-materialen.jpg';
 import trustVakmanschap from '../assets/generated/trust-vakmanschap.jpg';
 import trustResultaat from '../assets/generated/offerte-voltooid.jpg';
+import voegwerkTile from '../assets/generated/voegwerk-closeup.jpg';
+import gevelreinigingTile from '../assets/generated/gevelreiniging-na.jpg';
+import impregnerenTile from '../assets/generated/impregneren.jpg';
+import metselwerkTile from '../assets/generated/metselwerk-herstel.jpg';
+import scheurherstelTile from '../assets/generated/scheurherstel.jpg';
+import completeTile from '../assets/generated/offerte-voltooid.jpg';
+
+const serviceTiles = [
+  { ...SERVICES[0], image: voegwerkTile, imageAlt: 'Close-up van vers aangebracht voegwerk', span: 'lg' as const },
+  { ...SERVICES[1], image: gevelreinigingTile, imageAlt: 'Schone bakstenen gevel na reiniging', span: 'md' as const },
+  { ...SERVICES[2], image: impregnerenTile, imageAlt: 'Vakman brengt impregneermiddel aan op een gevel', span: 'md' as const },
+  { ...SERVICES[3], image: metselwerkTile, imageAlt: 'Vakman vervangt een beschadigde baksteen', span: 'md' as const },
+  { ...SERVICES[4], image: scheurherstelTile, imageAlt: 'Herstel van een scheur in het metselwerk', span: 'md' as const },
+  { ...SERVICES[5], image: completeTile, imageAlt: 'Volledig gerenoveerde bakstenen gevel', span: 'full' as const },
+];
 
 const trustPanels = [
   {
@@ -37,7 +54,7 @@ const trustPanels = [
     label: 'Vakmanschap',
     title: 'Vakmensen met oog voor detail',
     description:
-      'Al onze voegwerkspecialisten hebben meer dan 10 jaar ervaring en werken volgens de laatste vaktechnieken — netjes, punctueel en met respect voor uw woning.',
+      'Al onze voegwerkspecialisten hebben meer dan 10 jaar ervaring en werken volgens de laatste vaktechnieken — netjes, punctueel en met respect voor uw woning. Meerdere van onze vakmensen zijn persoonlijk VCA-gecertificeerd.',
     actionLabel: 'Ons team',
     image: trustVakmanschap,
     imageAlt: 'Ervaren vakman in bedrijfskleding voor een bakstenen gevel',
@@ -51,25 +68,6 @@ const trustPanels = [
     actionLabel: 'Bekijk het resultaat',
     image: trustResultaat,
     imageAlt: 'Volledig gerenoveerde bakstenen gevel met fris voegwerk',
-  },
-];
-
-const services = [
-  {
-    title: 'Voegwerk uithakken',
-    text: 'Oud, verweerd voegwerk vakkundig verwijderd, zodat de nieuwe voeg op een schone, stevige ondergrond wordt aangebracht.',
-  },
-  {
-    title: 'Nieuw voegwerk',
-    text: 'Snijvoeg, platvolle voeg of schaduwvoeg — aangebracht met oog voor het originele metselverband.',
-  },
-  {
-    title: 'Gevelreiniging',
-    text: 'Professionele reiniging van baksteen: aanslag, mos en vervuiling verwijderd zonder de steen te beschadigen.',
-  },
-  {
-    title: 'Impregneren',
-    text: 'Waterafstotende, ademende bescherming tegen vocht en vorstschade — voor jaren extra levensduur.',
   },
 ];
 
@@ -125,11 +123,19 @@ const reviews = [
   <section class="border-b border-sand-2">
     <div class="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:py-20 md:grid-cols-2 md:items-center">
       <div>
-        <h1 class="font-display text-4xl font-bold leading-tight text-primary sm:text-5xl">
+        <p class="font-display text-sm font-semibold uppercase tracking-wide text-accent">
+          Voegwerk &amp; gevelrenovatie in Harderwijk en heel Nederland
+        </p>
+        <h1 class="mt-2 font-display text-4xl font-bold leading-tight text-primary sm:text-5xl">
           Vakmanschap zonder <span class="text-accent">compromissen.</span>
         </h1>
         <p class="mt-5 max-w-xl text-lg text-primary/80">
-          Complete gevelrenovatie. Vast tarief, heldere planning, strakke oplevering — elke keer weer.
+          Wij verzorgen voegwerk, gevelreiniging, impregneren, metselwerk- en scheurherstel — of een complete
+          gevelrenovatie in één traject. Vast tarief, heldere planning, strakke oplevering.
+        </p>
+        <p class="mt-3 max-w-xl text-sm text-primary/70">
+          U hoeft zelf niet te bedenken welke aanpak of materialen nodig zijn — wij inspecteren, adviseren en nemen
+          het volledige traject uit handen.
         </p>
         <div class="mt-8 flex flex-wrap gap-4">
           <a
@@ -161,15 +167,11 @@ const reviews = [
     <h2 class="font-display text-2xl font-semibold uppercase tracking-wide text-primary">
       Onze diensten
     </h2>
-    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {services.map((s) => (
-        <div class="rounded-brand border border-sand-2 bg-paper p-6">
-          <h3 class="font-display text-base font-semibold uppercase tracking-wide text-primary">
-            {s.title}
-          </h3>
-          <p class="mt-2 text-sm leading-relaxed text-primary/75">{s.text}</p>
-        </div>
-      ))}
+    <p class="mt-3 max-w-2xl text-primary/75">
+      Van een enkele scheur tot een complete gevelrenovatie — wij nemen het volledige traject uit handen.
+    </p>
+    <div class="mt-8">
+      <ServicesBento tiles={serviceTiles} />
     </div>
     <a href="/diensten/" class="mt-6 inline-block text-sm font-semibold text-accent hover:underline">
       Alle diensten bekijken &rarr;

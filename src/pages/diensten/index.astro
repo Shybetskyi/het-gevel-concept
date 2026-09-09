@@ -1,43 +1,32 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import { SERVICES } from '../../consts';
 
-const categories = [
-  {
-    href: '/diensten/voegwerk/',
-    title: 'Voegwerk',
-    text: 'Uithakken van oud voegwerk en het aanbrengen van nieuw voegwerk — in snijvoeg, platvolle voeg of schaduwvoeg.',
-  },
-  {
-    href: '/diensten/gevelonderhoud/',
-    title: 'Gevelonderhoud',
-    text: 'Gevelreiniging en impregneren, voor een gevel die er niet alleen goed uitziet, maar ook beschermd is.',
-  },
-];
-
-const upcoming = ['Scheurherstel', 'Steenvervanging', 'Gevelcoating', 'Complete gevelrenovaties'];
+const upcoming = ['Steenvervanging', 'Gevelcoating'];
 ---
 
 <Layout
   title="Diensten"
-  description="Voegwerk en gevelonderhoud door Het Gevel Concept — vakkundig, met vaste prijzen en heldere planning."
+  description="Voegwerk, gevelreiniging, impregneren, metselwerk- en scheurherstel, en complete gevelrenovatie door Het Gevel Concept — vakkundig, met vaste prijzen en heldere planning."
 >
   <section class="mx-auto max-w-6xl px-5 py-16">
     <h1 class="font-display text-4xl font-bold text-primary">Onze diensten</h1>
     <p class="mt-4 max-w-2xl text-primary/75">
-      Vakmanschap zonder compromissen, van gevel tot voeg.
+      Vakmanschap zonder compromissen, van gevel tot voeg. U hoeft niet te bedenken welke aanpak of materialen nodig
+      zijn — wij inspecteren, adviseren en voeren het volledige traject uit.
     </p>
 
     <div class="mt-10 grid gap-6 sm:grid-cols-2">
-      {categories.map((c) => (
+      {SERVICES.map((s) => (
         <a
-          href={c.href}
+          href={`/diensten/${s.slug}/`}
           class="group rounded-brand border border-sand-2 bg-paper p-8 transition hover:border-accent"
         >
           <h2 class="font-display text-xl font-semibold uppercase tracking-wide text-primary group-hover:text-accent">
-            {c.title}
+            {s.title}
           </h2>
-          <p class="mt-3 text-sm leading-relaxed text-primary/75">{c.text}</p>
+          <p class="mt-3 text-sm leading-relaxed text-primary/75">{s.short}</p>
           <span class="mt-4 inline-block text-sm font-semibold text-accent">Meer info &rarr;</span>
         </a>
       ))}

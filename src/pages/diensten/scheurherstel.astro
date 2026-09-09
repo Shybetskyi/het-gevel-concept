@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import ServiceAccordion from '../../components/ServiceAccordion.astro';
+import scheurImage from '../../assets/generated/scheurherstel.jpg';
+
+const accordion = [
+  {
+    question: 'Hoe het werkt',
+    answer:
+      'Bij een haarscheur (smaller dan circa 2 mm) injecteren we een laag-viskeuze harsen die diep in de scheur trekt. Bij een structurele scheur frezen we een dunne groef dwars over de scheur, elke 3 tot 4 lagen, tot minstens 30 cm voorbij de scheur, en verankeren we een roestvrijstalen spiraalanker in krimpvrije ankermortel — de scheur wordt zo onzichtbaar en de gevel weer stabiel.',
+  },
+  {
+    question: 'Waarom dit belangrijk is',
+    answer:
+      'Een scheur is bijna nooit alleen cosmetisch: hij laat water het metselwerk in, wat weer tot vorstschade en beschadigde stenen leidt. We onderzoeken altijd eerst de oorzaak — een vochtbron, verzakking of een verweerde voeg — zodat de scheur niet terugkomt.',
+  },
+  {
+    question: 'Wat het oplevert',
+    answer:
+      'Een structureel herstelde gevel zonder zichtbare littekens, en — omdat spiraalankers minimale hak- en breekwerkzaamheden vereisen — met behoud van zoveel mogelijk origineel metselwerk.',
+  },
+  {
+    question: 'Materialen die we gebruiken',
+    answer:
+      'Laag-viskeuze injectiehars voor haarscheuren, en roestvrijstalen spiraalankers met krimpvrije, hoogwaardige ankermortel voor structurele scheuren — beide bestand tegen Nederlandse weersomstandigheden.',
+  },
+];
+---
+
+<Layout
+  title="Scheurherstel"
+  description="Scheurherstel door Het Gevel Concept — scheuren in het metselwerk duurzaam hersteld, van injectie tot stabiliserende muurankers."
+>
+  <section class="mx-auto max-w-6xl px-5 py-16">
+    <p class="text-sm font-semibold uppercase tracking-wide text-accent">
+      <a href="/diensten/" class="hover:underline">Diensten</a> / Scheurherstel
+    </p>
+    <h1 class="mt-2 font-display text-4xl font-bold text-primary">Scheurherstel</h1>
+    <p class="mt-4 max-w-2xl text-primary/75">
+      Scheuren in het metselwerk duurzaam hersteld — van harsinjectie tot stabiliserende spiraalankers.
+    </p>
+
+    <Image
+      src={scheurImage}
+      alt="Herstel van een scheur in het metselwerk met een spiraalanker"
+      class="mt-12 aspect-square w-full max-w-2xl rounded-brand object-cover"
+      widths={[500, 800, 1200]}
+      sizes="(min-width: 768px) 50vw, 100vw"
+    />
+
+    <h2 class="mt-16 font-display text-lg font-semibold uppercase tracking-wide text-primary">In detail</h2>
+    <div class="mt-6">
+      <ServiceAccordion items={accordion} />
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>
