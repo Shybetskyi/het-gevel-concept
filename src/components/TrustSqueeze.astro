@@ -32,10 +32,8 @@ const { panels } = Astro.props;
             sizes="(min-width: 768px) 40vw, 100vw"
           />
           <div class="squeeze-scrim" aria-hidden="true"></div>
-          <div class="squeeze-header">
-            <span class="squeeze-number" aria-hidden="true">{panel.number}</span>
-            <span class="squeeze-heading">{panel.actionLabel}</span>
-          </div>
+          <span class="squeeze-number" aria-hidden="true">{panel.number}</span>
+          <span class="squeeze-heading">{panel.actionLabel}</span>
           <div class="squeeze-content">
             <h3 class="font-display text-lg font-semibold uppercase tracking-wide text-sand sm:text-xl">
               {panel.title}
@@ -95,19 +93,10 @@ const { panels } = Astro.props;
     background: linear-gradient(0deg, rgba(24, 26, 29, 0.88) 0%, rgba(24, 26, 29, 0.35) 45%, rgba(24, 26, 29, 0.15) 100%);
   }
 
-  .squeeze-header {
+  .squeeze-number {
     position: absolute;
     top: 1rem;
     left: 1.1rem;
-    right: 1.1rem;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.6rem;
-  }
-
-  .squeeze-number {
-    flex: 0 0 auto;
     font-family: var(--font-display);
     font-size: 1.5rem;
     font-weight: 700;
@@ -116,11 +105,10 @@ const { panels } = Astro.props;
   }
 
   .squeeze-heading {
-    flex: 1 1 auto;
-    min-width: 0;
+    position: absolute;
+    top: 1rem;
+    right: 1.1rem;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     font-family: var(--font-display);
     font-size: 1.05rem;
     font-weight: 600;
@@ -133,6 +121,13 @@ const { panels } = Astro.props;
   @media (min-width: 768px) {
     .squeeze-heading {
       font-size: 1.25rem;
+      transform-origin: bottom right;
+      transform: rotate(-90deg);
+      transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .squeeze-panel.is-active .squeeze-heading {
+      transform: rotate(0deg);
     }
   }
 
