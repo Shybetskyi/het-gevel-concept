@@ -1,15 +1,17 @@
 ---
 import { Image } from 'astro:assets';
-import logoIcon from '../assets/logo-icon.png';
+import logoIcon from '../assets/logo-icon.svg';
 import { NAV_LINKS, SERVICES } from '../consts';
 
 const currentPath = Astro.url.pathname;
+const dienstenHref = '/#diensten';
+const dienstenActive = currentPath.startsWith('/diensten');
 ---
 
 <header class="sticky top-0 z-40 border-b border-sand-2 bg-paper/95 backdrop-blur">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
     <a href="/" class="flex items-center gap-3">
-      <Image src={logoIcon} alt="Het Gevel Concept" class="h-28 w-auto" />
+      <Image src={logoIcon} alt="Het Gevel Concept" class="h-16 w-auto" />
       <span class="font-display text-lg font-semibold uppercase tracking-wide text-primary">
         Het <span class="text-accent">Gevel</span> Concept
       </span>
@@ -20,10 +22,10 @@ const currentPath = Astro.url.pathname;
         link.href === '/diensten/' ? (
           <div class="group relative">
             <a
-              href={link.href}
+              href={dienstenHref}
               class:list={[
                 'flex items-center gap-1 font-body text-sm font-semibold uppercase tracking-wide text-primary/80 hover:text-accent',
-                currentPath.startsWith(link.href) && 'text-accent',
+                dienstenActive && 'text-accent',
               ]}
             >
               {link.label}
@@ -88,7 +90,10 @@ const currentPath = Astro.url.pathname;
   <nav id="mobile-menu" class="hidden flex-col gap-1 border-t border-sand-2 bg-paper px-5 py-4 md:hidden">
     {NAV_LINKS.map((link) => (
       <>
-        <a href={link.href} class="rounded-brand px-2 py-2.5 font-body text-sm font-semibold uppercase text-primary hover:bg-sand">
+        <a
+          href={link.href === '/diensten/' ? dienstenHref : link.href}
+          class="rounded-brand px-2 py-2.5 font-body text-sm font-semibold uppercase text-primary hover:bg-sand"
+        >
           {link.label}
         </a>
         {link.href === '/diensten/' && (
