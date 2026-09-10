@@ -16,10 +16,7 @@ const schema = {
     addressLocality: SITE.address.city,
     addressCountry: 'NL',
   },
-  areaServed: [
-    ...SITE.serviceArea.map((name) => ({ '@type': 'City', name })),
-    { '@type': 'Country', name: 'Nederland' },
-  ],
+  areaServed: SITE.serviceArea.map((name) => ({ '@type': 'City', name })),
   slogan: SITE.tagline,
 };
 ---
