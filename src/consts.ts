@@ -14,8 +14,8 @@ export const SITE = {
   phoneHref: 'tel:+31657485066',
   email: 'info@hetgevelconcept.nl',
   serviceArea: [
-    'Harderwijk',
     'Ermelo',
+    'Harderwijk',
     'Putten',
     'Nijkerk',
     'Zeewolde',

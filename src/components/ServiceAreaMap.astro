@@ -1,52 +1,22 @@
 ---
-// Free, no-API-key map (Leaflet + OpenStreetMap tiles) showing the service
-// area as a shaded zone plus individual markers for Harderwijk (HQ) and
-// every city in SITE.serviceArea.
-import { SITE } from '../consts';
+// Free, no-API-key map (Leaflet + OpenStreetMap tiles) showing the real
+// Dutch provinces that make up the service area, with a single HQ marker
+// on Ermelo. Province boundaries: CBS / cartomap.github.io (provincie_2023).
+import provincies from '../data/nl-provincies.json';
 
 const mapId = `service-map-${Math.random().toString(36).slice(2, 9)}`;
-
-// Approximate city centres (lat, lng).
-const CITY_COORDS: Record<string, [number, number]> = {
-  Harderwijk: [52.3494, 5.6202],
-  Ermelo: [52.2966, 5.6294],
-  Putten: [52.2634, 5.6116],
-  Nijkerk: [52.2226, 5.4842],
-  Zeewolde: [52.3378, 5.5405],
-  Barneveld: [52.1417, 5.5836],
-  Apeldoorn: [52.2112, 5.9699],
-  Zwolle: [52.5168, 6.083],
-  Lelystad: [52.5185, 5.4714],
-  Almere: [52.3508, 5.2647],
-};
-
-const markers = SITE.serviceArea
-  .filter((city) => CITY_COORDS[city])
-  .map((city) => ({ city, coords: CITY_COORDS[city], isHQ: city === 'Harderwijk' }));
-
-// Rough outline enclosing the whole service area (drawn by hand around the cities above).
-const zonePolygon: [number, number][] = [
-  [52.62, 6.05],
-  [52.55, 6.35],
-  [52.22, 6.25],
-  [52.05, 5.85],
-  [52.0, 5.4],
-  [52.12, 5.12],
-  [52.32, 5.08],
-  [52.48, 5.18],
-  [52.56, 5.4],
-  [52.6, 5.75],
-];
+const HQ: [number, number] = [52.2966, 5.6294]; // Ermelo
+const HIGHLIGHT = ['Gelderland', 'Flevoland', 'Utrecht', 'Overijssel'];
 ---
 
 <div class="aspect-video w-full overflow-hidden rounded-brand border border-sand-2">
-  <div id={mapId} class="h-full w-full" role="img" aria-label="Kaart van het werkgebied van Het Gevel Concept in centraal Nederland"></div>
+  <div id={mapId} class="h-full w-full" role="img" aria-label="Kaart van het werkgebied van Het Gevel Concept: Gelderland, Flevoland, Utrecht en Overijssel"></div>
 </div>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 
-<script define:vars={{ mapId, markers, zonePolygon }}>
+<script define:vars={{ mapId, provincies, HQ, HIGHLIGHT }}>
   function initMap() {
     // @ts-ignore - Leaflet loaded globally via CDN script
     const L = window.L;
@@ -58,10 +28,7 @@ const zonePolygon: [number, number][] = [
     const accent = styles.getPropertyValue('--color-accent').trim() || '#c1502e';
     const primary = styles.getPropertyValue('--color-primary').trim() || '#24272b';
 
-    const map = L.map(el, {
-      scrollWheelZoom: false,
-      attributionControl: true,
-    });
+    const map = L.map(el, { scrollWheelZoom: false, attributionControl: true });
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
@@ -69,12 +36,13 @@ const zonePolygon: [number, number][] = [
       className: 'hgc-tiles',
     }).addTo(map);
 
-    L.polygon(zonePolygon, {
-      color: accent,
-      weight: 2,
-      opacity: 0.8,
-      fillColor: accent,
-      fillOpacity: 0.12,
+    const isHighlighted = (feature) => HIGHLIGHT.includes(feature.properties.statnaam);
+
+    const provinceLayer = L.geoJSON(provincies, {
+      style: (feature) =>
+        isHighlighted(feature)
+          ? { color: accent, weight: 2, opacity: 0.9, fillColor: accent, fillOpacity: 0.18 }
+          : { color: primary, weight: 1, opacity: 0.25, fillColor: primary, fillOpacity: 0.04 },
     }).addTo(map);
 
     const hqIcon = L.divIcon({
@@ -83,27 +51,14 @@ const zonePolygon: [number, number][] = [
       iconSize: [26, 26],
       iconAnchor: [13, 13],
     });
+    L.marker(HQ, { icon: hqIcon }).addTo(map).bindPopup('<strong>Ermelo</strong><br>Hoofdkantoor');
 
-    const cityIcon = L.divIcon({
-      className: '',
-      html: `<span style="display:block;width:12px;height:12px;border-radius:50%;background:${primary};border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4);"></span>`,
-      iconSize: [12, 12],
-      iconAnchor: [6, 6],
-    });
+    const highlightedBounds = L.geoJSON({
+      type: 'FeatureCollection',
+      features: provincies.features.filter(isHighlighted),
+    }).getBounds();
 
-    const points = [];
-    for (const m of markers) {
-      const icon = m.isHQ ? hqIcon : cityIcon;
-      const marker = L.marker(m.coords, { icon }).addTo(map);
-      marker.bindPopup(m.isHQ ? `<strong>${m.city}</strong><br>Hoofdkantoor` : m.city);
-      points.push(m.coords);
-    }
-
-    if (points.length) {
-      map.fitBounds(L.latLngBounds(points), { padding: [24, 24] });
-    } else {
-      map.setView([52.3, 5.7], 9);
-    }
+    map.fitBounds(highlightedBounds, { padding: [16, 16] });
   }
 
   if (document.readyState !== 'loading') {
