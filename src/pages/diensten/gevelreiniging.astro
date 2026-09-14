@@ -34,7 +34,7 @@ const accordion = [
   title="Gevelreiniging"
   description="Professionele gevelreiniging door Het Gevel Concept — aanslag, mos en vervuiling verwijderd zonder de steen of het voegwerk te beschadigen."
 >
-  <section class="mx-auto max-w-6xl px-5 py-16">
+  <section class="mx-auto max-w-6xl px-5 pt-16">
     <p class="text-sm font-semibold uppercase tracking-wide text-accent">
       <a href="/diensten/" class="hover:underline">Diensten</a> / Gevelreiniging
     </p>
@@ -43,34 +43,36 @@ const accordion = [
       Een schone gevel gaat jaren langer mee. Wij verwijderen aanslag, mos en vervuiling zonder de steen of het
       voegwerk te beschadigen.
     </p>
+  </section>
 
-    <div class="mt-12 grid grid-cols-1 gap-2 sm:grid-cols-2">
-      <div class="relative">
-        <Image
-          src={voorImage}
-          alt="Vervuilde bakstenen gevel voor reiniging"
-          class="aspect-video w-full rounded-brand object-cover"
-          widths={[400, 800]}
-          sizes="50vw"
-        />
-        <span class="absolute left-2 top-2 rounded-brand bg-primary px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-sand">
-          Voor
-        </span>
-      </div>
-      <div class="relative">
-        <Image
-          src={naImage}
-          alt="Schone bakstenen gevel na reiniging"
-          class="aspect-video w-full rounded-brand object-cover"
-          widths={[400, 800]}
-          sizes="50vw"
-        />
-        <span class="absolute left-2 top-2 rounded-brand bg-accent px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-paper">
-          Na
-        </span>
-      </div>
+  <div class="mt-8 grid grid-cols-1 gap-1 sm:grid-cols-2">
+    <div class="relative">
+      <Image
+        src={voorImage}
+        alt="Vervuilde bakstenen gevel voor reiniging"
+        class="aspect-video w-full object-cover"
+        widths={[600, 1000]}
+        sizes="50vw"
+      />
+      <span class="absolute left-3 top-3 rounded-brand bg-primary px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-sand">
+        Voor
+      </span>
     </div>
+    <div class="relative">
+      <Image
+        src={naImage}
+        alt="Schone bakstenen gevel na reiniging"
+        class="aspect-video w-full object-cover"
+        widths={[600, 1000]}
+        sizes="50vw"
+      />
+      <span class="absolute left-3 top-3 rounded-brand bg-accent px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-paper">
+        Na
+      </span>
+    </div>
+  </div>
 
+  <section class="mx-auto max-w-6xl px-5 pb-16">
     <h2 class="mt-16 font-display text-lg font-semibold uppercase tracking-wide text-primary">In detail</h2>
     <div class="mt-6">
       <ServiceAccordion items={accordion} />

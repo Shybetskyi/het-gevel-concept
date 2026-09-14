@@ -54,7 +54,7 @@ const voegtypes = [
   title="Voegwerk"
   description="Voegwerk uithakken en nieuw voegwerk aanbrengen — snijvoeg, platvolle voeg of schaduwvoeg. Vakkundig gevelherstel door Het Gevel Concept."
 >
-  <section class="mx-auto max-w-6xl px-5 py-16">
+  <section class="mx-auto max-w-6xl px-5 pt-16">
     <p class="text-sm font-semibold uppercase tracking-wide text-accent">
       <a href="/diensten/" class="hover:underline">Diensten</a> / Voegwerk
     </p>
@@ -62,7 +62,17 @@ const voegtypes = [
     <p class="mt-4 max-w-2xl text-primary/75">
       De voeg is het meest kwetsbare onderdeel van een gevel — en het onderdeel dat het meeste vakmanschap vraagt.
     </p>
+  </section>
 
+  <Image
+    src={closeupImage}
+    alt="Close-up van handen die vers voegwerk aanbrengen met een voegspijker"
+    class="mt-8 aspect-[21/9] w-full object-cover"
+    widths={[600, 1000, 1600]}
+    sizes="100vw"
+  />
+
+  <section class="mx-auto max-w-6xl px-5 pb-16">
     <div class="mt-12 grid gap-10 md:grid-cols-2">
       <div>
         <h2 class="font-display text-lg font-semibold uppercase tracking-wide text-primary">
@@ -83,14 +93,6 @@ const voegtypes = [
         </p>
       </div>
     </div>
-
-    <Image
-      src={closeupImage}
-      alt="Close-up van handen die vers voegwerk aanbrengen met een voegspijker"
-      class="mt-12 aspect-[21/9] w-full rounded-brand object-cover"
-      widths={[600, 1000, 1600]}
-      sizes="100vw"
-    />
 
     <h2 class="mt-16 font-display text-lg font-semibold uppercase tracking-wide text-primary">Voegtypes</h2>
     <div class="mt-6 grid gap-6 sm:grid-cols-3">

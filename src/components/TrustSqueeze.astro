@@ -19,49 +19,107 @@ interface Props {
 const { panels } = Astro.props;
 ---
 
-<div class="squeeze-row" id="trust-squeeze">
-  {panels.map((panel, i) => (
-    <div class={`squeeze-panel ${i === 0 ? 'is-active' : ''}`} data-index={i}>
-      <button type="button" class="squeeze-trigger" aria-expanded={i === 0 ? 'true' : 'false'}>
-        <div class="squeeze-media">
-          <Image
-            src={panel.image}
-            alt={panel.imageAlt}
-            class="squeeze-img"
-            widths={[400, 800, 1200]}
-            sizes="(min-width: 768px) 40vw, 100vw"
-          />
-          <div class="squeeze-scrim" aria-hidden="true"></div>
-          <span class="squeeze-number" aria-hidden="true">{panel.number}</span>
-          <span class="squeeze-heading">{panel.actionLabel}</span>
+<div id="trust-squeeze">
+  <div class="squeeze-tabs md:hidden" role="tablist">
+    {panels.map((panel, i) => (
+      <button
+        type="button"
+        class="squeeze-tab"
+        data-index={i}
+        aria-selected={i === 0 ? 'true' : 'false'}
+      >
+        <span class="squeeze-tab-num">{panel.number}</span>
+        {panel.actionLabel}
+      </button>
+    ))}
+  </div>
+
+  <div class="squeeze-row">
+    {panels.map((panel, i) => (
+      <div class={`squeeze-panel ${i === 0 ? 'is-active' : ''}`} data-index={i}>
+        <button type="button" class="squeeze-trigger" aria-expanded={i === 0 ? 'true' : 'false'}>
+          <div class="squeeze-media">
+            <Image
+              src={panel.image}
+              alt={panel.imageAlt}
+              class="squeeze-img"
+              widths={[400, 800, 1200]}
+              sizes="(min-width: 768px) 40vw, 100vw"
+            />
+            <div class="squeeze-scrim" aria-hidden="true"></div>
+            <span class="squeeze-number" aria-hidden="true">{panel.number}</span>
+            <span class="squeeze-heading">{panel.actionLabel}</span>
+          </div>
           <div class="squeeze-content">
             <h3 class="font-display text-lg font-semibold uppercase tracking-wide text-sand sm:text-xl">
               {panel.title}
             </h3>
             <p class="mt-2 max-w-md text-sm leading-relaxed text-sand-2/90">{panel.description}</p>
           </div>
-        </div>
-      </button>
-    </div>
-  ))}
+        </button>
+      </div>
+    ))}
+  </div>
 </div>
 
 <style>
-  .squeeze-row {
+  /* Mobile tab bar */
+  .squeeze-tabs {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .squeeze-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    border: 1.5px solid rgba(241, 234, 224, 0.25);
+    background: transparent;
+    color: var(--color-sand-2);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+  }
+
+  .squeeze-tab-num {
+    color: var(--color-accent);
+  }
+
+  .squeeze-tab[aria-selected='true'] {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: var(--color-paper);
+  }
+
+  .squeeze-tab[aria-selected='true'] .squeeze-tab-num {
+    color: var(--color-paper);
+  }
+
+  /* Mobile: one static, fully expanded block at a time */
+  .squeeze-row {
+    display: block;
   }
 
   .squeeze-panel {
+    display: none;
     border-radius: var(--radius-brand);
     overflow: hidden;
+  }
+
+  .squeeze-panel.is-active {
+    display: block;
   }
 
   .squeeze-trigger {
     display: block;
     width: 100%;
-    height: 100%;
     text-align: left;
     cursor: pointer;
   }
@@ -69,7 +127,6 @@ const { panels } = Astro.props;
   .squeeze-media {
     position: relative;
     width: 100%;
-    height: 100%;
     aspect-ratio: 16 / 10;
     overflow: hidden;
   }
@@ -93,34 +150,52 @@ const { panels } = Astro.props;
     background: linear-gradient(0deg, rgba(24, 26, 29, 0.88) 0%, rgba(24, 26, 29, 0.35) 45%, rgba(24, 26, 29, 0.15) 100%);
   }
 
-  .squeeze-number {
-    position: absolute;
-    top: 1rem;
-    left: 1.1rem;
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-accent);
-    opacity: 0.9;
+  .squeeze-number,
+  .squeeze-heading {
+    display: none;
   }
 
-  .squeeze-heading {
-    position: absolute;
-    top: 1rem;
-    right: 1.1rem;
-    white-space: nowrap;
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    text-align: right;
-    color: var(--color-sand);
+  .squeeze-content {
+    position: static;
+    padding: 1.1rem 1.25rem 1.4rem;
+    background: var(--color-primary);
+    opacity: 1;
+    transform: none;
   }
 
   @media (min-width: 768px) {
+    .squeeze-tabs {
+      display: none;
+    }
+
+    .squeeze-number,
     .squeeze-heading {
+      display: block;
+    }
+
+    .squeeze-number {
+      position: absolute;
+      top: 1rem;
+      left: 1.1rem;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      opacity: 0.9;
+    }
+
+    .squeeze-heading {
+      position: absolute;
+      top: 1rem;
+      right: 1.1rem;
+      white-space: nowrap;
+      font-family: var(--font-display);
       font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      text-align: right;
+      color: var(--color-sand);
       transform-origin: bottom right;
       transform: rotate(-90deg);
       transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -129,31 +204,16 @@ const { panels } = Astro.props;
     .squeeze-panel.is-active .squeeze-heading {
       transform: rotate(0deg);
     }
-  }
 
-  .squeeze-content {
-    position: absolute;
-    left: 1.1rem;
-    right: 1.1rem;
-    bottom: 1rem;
-    opacity: 0;
-    transform: translateY(6px);
-    transition: opacity 350ms ease, transform 350ms ease;
-    pointer-events: none;
-  }
-
-  .squeeze-panel.is-active .squeeze-content {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @media (min-width: 768px) {
     .squeeze-row {
+      display: flex;
       flex-direction: row;
+      gap: 1rem;
       height: 26rem;
     }
 
     .squeeze-panel {
+      display: block;
       flex: 1 1 0%;
       min-width: 0;
       height: 100%;
@@ -164,40 +224,69 @@ const { panels } = Astro.props;
       flex-grow: 4.5;
     }
 
+    .squeeze-trigger {
+      height: 100%;
+    }
+
     .squeeze-media {
+      height: 100%;
       aspect-ratio: auto;
     }
 
     .squeeze-content {
-      right: 1.5rem;
+      position: absolute;
       left: 1.25rem;
+      right: 1.5rem;
       bottom: 1.25rem;
+      background: none;
+      padding: 0;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 350ms ease, transform 350ms ease;
+      pointer-events: none;
+    }
+
+    .squeeze-panel.is-active .squeeze-content {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
   }
 </style>
 
 <script>
-  const row = document.getElementById('trust-squeeze');
-  if (row) {
-    const panels = Array.from(row.querySelectorAll<HTMLElement>('.squeeze-panel'));
+  const root = document.getElementById('trust-squeeze');
+  if (root) {
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('.squeeze-panel'));
+    const tabs = Array.from(root.querySelectorAll<HTMLElement>('.squeeze-tab'));
 
-    function activate(panel: HTMLElement) {
+    function activate(index: number) {
       for (const p of panels) {
-        const isActive = p === panel;
+        const isActive = p.dataset.index === String(index);
         p.classList.toggle('is-active', isActive);
         p.querySelector('.squeeze-trigger')?.setAttribute('aria-expanded', String(isActive));
       }
+      for (const t of tabs) {
+        t.setAttribute('aria-selected', String(t.dataset.index === String(index)));
+      }
     }
 
-    panels.forEach((panel) => {
+    panels.forEach((panel, i) => {
       const trigger = panel.querySelector('.squeeze-trigger');
-      trigger?.addEventListener('click', () => activate(panel));
+      trigger?.addEventListener('click', () => activate(i));
       trigger?.addEventListener('focus', () => {
-        if (window.matchMedia('(min-width: 768px)').matches) activate(panel);
+        if (window.matchMedia('(min-width: 768px)').matches) activate(i);
       });
       if (window.matchMedia('(hover: hover) and (min-width: 768px)').matches) {
-        panel.addEventListener('mouseenter', () => activate(panel));
+        panel.addEventListener('mouseenter', () => activate(i));
       }
+    });
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => {
+        activate(i);
+        panels[i]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
     });
   }
 </script>
