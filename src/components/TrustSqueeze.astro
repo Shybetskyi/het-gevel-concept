@@ -169,24 +169,29 @@ const { panels } = Astro.props;
     }
 
     .squeeze-header {
+      /* No longer a flex row at desktop: number/heading are positioned
+         independently below, so a shrinking flex sibling can't push long
+         labels outside the panel's clipped bounds. */
+      position: static;
+      display: block;
+      width: auto;
+      padding: 0;
+    }
+
+    .squeeze-number {
       position: absolute;
       z-index: 2;
       top: 1rem;
       left: 1.1rem;
-      right: 1.1rem;
-      width: auto;
-      padding: 0;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
-
-    .squeeze-number {
       font-size: 1.5rem;
       opacity: 0.9;
     }
 
     .squeeze-heading {
-      flex: 0 1 auto;
+      position: absolute;
+      z-index: 2;
+      top: 1rem;
+      right: 1.1rem;
       font-size: 1.25rem;
       text-align: right;
       white-space: nowrap;
@@ -211,7 +216,6 @@ const { panels } = Astro.props;
       border-radius: 0;
     }
 
-    .squeeze-trigger:hover .squeeze-img,
     .squeeze-panel:hover .squeeze-img {
       transform: scale(1.04);
     }
@@ -256,12 +260,14 @@ const { panels } = Astro.props;
       }
     }
 
+    const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
+
     panels.forEach((panel, i) => {
       const header = panel.querySelector('.squeeze-header');
       header?.addEventListener('click', () => {
-        // On mobile, tapping the already-open row collapses it; every other
-        // breakpoint always keeps exactly one panel open (squeeze behaviour).
-        if (window.matchMedia('(max-width: 767px)').matches && panel.classList.contains('is-active')) {
+        // Tapping the already-open row collapses it; otherwise it opens
+        // (and, on desktop, keeps exactly one panel open at a time).
+        if (isMobile() && panel.classList.contains('is-active')) {
           panel.classList.remove('is-active');
           header.setAttribute('aria-expanded', 'false');
         } else {
@@ -269,11 +275,32 @@ const { panels } = Astro.props;
         }
       });
       header?.addEventListener('focus', () => {
-        if (window.matchMedia('(min-width: 768px)').matches) activate(i);
+        if (!isMobile()) activate(i);
       });
       if (window.matchMedia('(hover: hover) and (min-width: 768px)').matches) {
         panel.addEventListener('mouseenter', () => activate(i));
       }
     });
+
+    // Mobile: the row scrolled into the middle of the screen opens on its
+    // own, and closes again once the next row takes its place — works for
+    // scrolling in either direction, on top of the tap-to-toggle above.
+    if (isMobile() && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            const panel = entry.target.closest<HTMLElement>('.squeeze-panel');
+            const index = panel ? panels.indexOf(panel) : -1;
+            if (index !== -1) activate(index);
+          }
+        },
+        { rootMargin: '-30% 0px -55% 0px', threshold: 0 },
+      );
+      panels.forEach((panel) => {
+        const header = panel.querySelector('.squeeze-header');
+        if (header) observer.observe(header);
+      });
+    }
   }
 </script>
