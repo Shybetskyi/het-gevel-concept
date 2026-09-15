@@ -20,15 +20,13 @@ const { panels } = Astro.props;
 ---
 
 <div id="trust-squeeze">
-  <div class="squeeze-row">
+  <!-- Desktop: interactive squeeze strip -->
+  <div class="squeeze-row hidden md:flex">
     {panels.map((panel, i) => (
       <div class={`squeeze-panel ${i === 0 ? 'is-active' : ''}`} data-index={i}>
         <button type="button" class="squeeze-header" aria-expanded={i === 0 ? 'true' : 'false'}>
           <span class="squeeze-number" aria-hidden="true">{panel.number}</span>
           <span class="squeeze-heading">{panel.actionLabel}</span>
-          <svg class="squeeze-chevron md:hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M6 9l6 6 6-6" />
-          </svg>
         </button>
         <div class="squeeze-body">
           <div class="squeeze-media">
@@ -37,7 +35,7 @@ const { panels } = Astro.props;
               alt={panel.imageAlt}
               class="squeeze-img"
               widths={[400, 800, 1200]}
-              sizes="(min-width: 768px) 40vw, 100vw"
+              sizes="40vw"
             />
             <div class="squeeze-scrim" aria-hidden="true"></div>
           </div>
@@ -51,100 +49,141 @@ const { panels } = Astro.props;
       </div>
     ))}
   </div>
+
+  <!-- Mobile: 2x2 grid, tap to open a modal -->
+  <div class="squeeze-grid md:hidden">
+    {panels.map((panel, i) => (
+      <button type="button" class="squeeze-tile" data-open={i}>
+        <span class="squeeze-tile-num">{panel.number}</span>
+        <span class="squeeze-tile-label">{panel.actionLabel}</span>
+      </button>
+    ))}
+  </div>
+
+  {panels.map((panel, i) => (
+    <dialog class="squeeze-dialog" data-dialog={i}>
+      <button type="button" class="squeeze-dialog-close" aria-label="Sluiten">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+      <Image
+        src={panel.image}
+        alt={panel.imageAlt}
+        class="squeeze-dialog-img"
+        widths={[400, 800]}
+        sizes="90vw"
+      />
+      <div class="squeeze-dialog-body">
+        <span class="squeeze-dialog-num">{panel.number}</span>
+        <h3 class="mt-2 font-display text-lg font-semibold uppercase tracking-wide text-sand">{panel.title}</h3>
+        <p class="mt-2 text-sm leading-relaxed text-sand-2/90">{panel.description}</p>
+      </div>
+    </dialog>
+  ))}
 </div>
 
 <style>
-  /* Mobile: full-width accordion rows */
-  .squeeze-row {
-    display: block;
+  /* ---------- Mobile: 2x2 grid + modal ---------- */
+  /* Scoped to a max-width query (not just relying on Tailwind's md:hidden)
+     so these rules can never win a specificity tie against md:flex/hidden
+     on the desktop markup, regardless of CSS source order. */
+  @media (max-width: 767.98px) {
+    .squeeze-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .squeeze-tile {
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      border-radius: var(--radius-brand);
+      border: 1px solid rgba(241, 234, 224, 0.18);
+      background: rgba(241, 234, 224, 0.05);
+      cursor: pointer;
+      padding: 0.5rem;
+      text-align: center;
+    }
+
+    .squeeze-tile-num {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-accent);
+    }
+
+    .squeeze-tile-label {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-sand);
+      line-height: 1.25;
+    }
   }
 
-  .squeeze-panel {
-    border-bottom: 1px solid rgba(241, 234, 224, 0.15);
-  }
-
-  .squeeze-panel:first-child {
-    border-top: 1px solid rgba(241, 234, 224, 0.15);
-  }
-
-  .squeeze-header {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1.1rem 0.25rem;
-    background: none;
+  .squeeze-dialog {
+    width: min(90vw, 440px);
+    max-height: 85vh;
+    margin: auto;
+    padding: 0;
     border: none;
-    cursor: pointer;
-    text-align: left;
+    border-radius: var(--radius-brand);
+    background: var(--color-primary);
+    color: var(--color-sand);
+    overflow: hidden auto;
   }
 
-  .squeeze-number {
-    flex: 0 0 auto;
+  .squeeze-dialog::backdrop {
+    background: rgba(15, 16, 18, 0.72);
+  }
+
+  .squeeze-dialog-close {
+    position: absolute;
+    z-index: 2;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    border: none;
+    background: rgba(15, 16, 18, 0.55);
+    color: var(--color-sand);
+    cursor: pointer;
+  }
+
+  .squeeze-dialog-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .squeeze-dialog-body {
+    padding: 1.1rem 1.25rem 1.4rem;
+  }
+
+  .squeeze-dialog-num {
     font-family: var(--font-display);
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--color-accent);
   }
 
-  .squeeze-heading {
-    flex: 1 1 auto;
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: var(--color-sand);
-  }
-
-  .squeeze-chevron {
-    flex: 0 0 auto;
-    color: var(--color-accent);
-    transition: transform 300ms ease;
-  }
-
-  .squeeze-panel.is-active .squeeze-chevron {
-    transform: rotate(180deg);
-  }
-
-  .squeeze-body {
-    display: none;
-    padding-bottom: 1.25rem;
-  }
-
-  .squeeze-panel.is-active .squeeze-body {
-    display: block;
-  }
-
-  .squeeze-media {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-    border-radius: var(--radius-brand);
-  }
-
-  .squeeze-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 700ms ease;
-  }
-
-  .squeeze-scrim {
-    display: none;
-  }
-
-  .squeeze-content {
-    padding: 0.9rem 0.25rem 0;
-  }
-
+  /* ---------- Desktop: squeeze strip ---------- */
+  /* Scoped to a min-width query to match md:flex exactly, for the same
+     specificity-safety reason as the mobile block above. */
   @media (min-width: 768px) {
     .squeeze-row {
-      display: flex;
-      flex-direction: row;
       gap: 1rem;
       height: 26rem;
     }
@@ -154,14 +193,9 @@ const { panels } = Astro.props;
       flex: 1 1 0%;
       min-width: 0;
       height: 100%;
-      border: none;
       border-radius: var(--radius-brand);
       overflow: hidden;
       transition: flex-grow 600ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .squeeze-panel:first-child {
-      border-top: none;
     }
 
     .squeeze-panel.is-active {
@@ -169,13 +203,15 @@ const { panels } = Astro.props;
     }
 
     .squeeze-header {
-      /* No longer a flex row at desktop: number/heading are positioned
-         independently below, so a shrinking flex sibling can't push long
-         labels outside the panel's clipped bounds. */
-      position: static;
       display: block;
-      width: auto;
+      position: static;
+      width: 0;
+      height: 0;
       padding: 0;
+      margin: 0;
+      border: none;
+      background: none;
+      overflow: visible;
     }
 
     .squeeze-number {
@@ -183,7 +219,10 @@ const { panels } = Astro.props;
       z-index: 2;
       top: 1rem;
       left: 1.1rem;
+      font-family: var(--font-display);
       font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-accent);
       opacity: 0.9;
     }
 
@@ -192,12 +231,18 @@ const { panels } = Astro.props;
       z-index: 2;
       top: 1rem;
       right: 1.1rem;
+      font-family: var(--font-display);
       font-size: 1.25rem;
-      text-align: right;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--color-sand);
       white-space: nowrap;
+      text-align: right;
       transform-origin: bottom right;
       transform: rotate(-90deg);
       transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
     }
 
     .squeeze-panel.is-active .squeeze-heading {
@@ -205,15 +250,22 @@ const { panels } = Astro.props;
     }
 
     .squeeze-body {
-      display: block;
       height: 100%;
-      padding-bottom: 0;
     }
 
     .squeeze-media {
+      position: relative;
       height: 100%;
-      aspect-ratio: auto;
-      border-radius: 0;
+      overflow: hidden;
+    }
+
+    .squeeze-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 700ms ease;
     }
 
     .squeeze-panel:hover .squeeze-img {
@@ -221,7 +273,6 @@ const { panels } = Astro.props;
     }
 
     .squeeze-scrim {
-      display: block;
       position: absolute;
       inset: 0;
       background: linear-gradient(0deg, rgba(24, 26, 29, 0.88) 0%, rgba(24, 26, 29, 0.35) 45%, rgba(24, 26, 29, 0.15) 100%);
@@ -232,7 +283,6 @@ const { panels } = Astro.props;
       left: 1.25rem;
       right: 1.5rem;
       bottom: 1.25rem;
-      padding: 0;
       opacity: 0;
       transform: translateY(6px);
       transition: opacity 350ms ease, transform 350ms ease;
@@ -250,6 +300,7 @@ const { panels } = Astro.props;
 <script>
   const root = document.getElementById('trust-squeeze');
   if (root) {
+    // Desktop squeeze strip
     const panels = Array.from(root.querySelectorAll<HTMLElement>('.squeeze-panel'));
 
     function activate(index: number) {
@@ -260,47 +311,31 @@ const { panels } = Astro.props;
       }
     }
 
-    const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
-
     panels.forEach((panel, i) => {
       const header = panel.querySelector('.squeeze-header');
-      header?.addEventListener('click', () => {
-        // Tapping the already-open row collapses it; otherwise it opens
-        // (and, on desktop, keeps exactly one panel open at a time).
-        if (isMobile() && panel.classList.contains('is-active')) {
-          panel.classList.remove('is-active');
-          header.setAttribute('aria-expanded', 'false');
-        } else {
-          activate(i);
-        }
-      });
-      header?.addEventListener('focus', () => {
-        if (!isMobile()) activate(i);
-      });
-      if (window.matchMedia('(hover: hover) and (min-width: 768px)').matches) {
+      header?.addEventListener('click', () => activate(i));
+      header?.addEventListener('focus', () => activate(i));
+      if (window.matchMedia('(hover: hover)').matches) {
         panel.addEventListener('mouseenter', () => activate(i));
       }
     });
 
-    // Mobile: the row scrolled into the middle of the screen opens on its
-    // own, and closes again once the next row takes its place — works for
-    // scrolling in either direction, on top of the tap-to-toggle above.
-    if (isMobile() && 'IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (!entry.isIntersecting) continue;
-            const panel = entry.target.closest<HTMLElement>('.squeeze-panel');
-            const index = panel ? panels.indexOf(panel) : -1;
-            if (index !== -1) activate(index);
-          }
-        },
-        { rootMargin: '-30% 0px -55% 0px', threshold: 0 },
-      );
-      panels.forEach((panel) => {
-        const header = panel.querySelector('.squeeze-header');
-        if (header) observer.observe(header);
+    // Mobile grid + modal
+    const tiles = Array.from(root.querySelectorAll<HTMLButtonElement>('.squeeze-tile'));
+    const dialogs = Array.from(root.querySelectorAll<HTMLDialogElement>('.squeeze-dialog'));
+
+    tiles.forEach((tile) => {
+      tile.addEventListener('click', () => {
+        const dialog = dialogs.find((d) => d.dataset.dialog === tile.dataset.open);
+        dialog?.showModal();
       });
-    }
+    });
+
+    dialogs.forEach((dialog) => {
+      dialog.querySelector('.squeeze-dialog-close')?.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) dialog.close();
+      });
+    });
   }
 </script>
