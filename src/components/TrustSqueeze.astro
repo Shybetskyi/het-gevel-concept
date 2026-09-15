@@ -50,64 +50,77 @@ const { panels } = Astro.props;
     ))}
   </div>
 
-  <!-- Mobile: 2x2 grid, tap to open a modal -->
+  <!-- Mobile: 2-col grid; tapping a tile expands it to full width in place -->
   <div class="squeeze-grid md:hidden">
     {panels.map((panel, i) => (
-      <button type="button" class="squeeze-tile" data-open={i}>
-        <span class="squeeze-tile-num">{panel.number}</span>
-        <span class="squeeze-tile-label">{panel.actionLabel}</span>
-      </button>
+      <div class="squeeze-tile" data-index={i}>
+        <button type="button" class="squeeze-tile-header" aria-expanded="false">
+          <span class="squeeze-tile-num">{panel.number}</span>
+          <span class="squeeze-tile-label">{panel.actionLabel}</span>
+          <svg class="squeeze-tile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+        <div class="squeeze-tile-body">
+          <Image
+            src={panel.image}
+            alt={panel.imageAlt}
+            class="squeeze-tile-img"
+            widths={[400, 800]}
+            sizes="100vw"
+          />
+          <div class="squeeze-tile-text">
+            <h3 class="font-display text-base font-semibold uppercase tracking-wide text-sand">{panel.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-sand-2/90">{panel.description}</p>
+          </div>
+        </div>
+      </div>
     ))}
   </div>
-
-  {panels.map((panel, i) => (
-    <dialog class="squeeze-dialog" data-dialog={i}>
-      <button type="button" class="squeeze-dialog-close" aria-label="Sluiten">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M6 6l12 12M18 6L6 18" />
-        </svg>
-      </button>
-      <Image
-        src={panel.image}
-        alt={panel.imageAlt}
-        class="squeeze-dialog-img"
-        widths={[400, 800]}
-        sizes="90vw"
-      />
-      <div class="squeeze-dialog-body">
-        <span class="squeeze-dialog-num">{panel.number}</span>
-        <h3 class="mt-2 font-display text-lg font-semibold uppercase tracking-wide text-sand">{panel.title}</h3>
-        <p class="mt-2 text-sm leading-relaxed text-sand-2/90">{panel.description}</p>
-      </div>
-    </dialog>
-  ))}
 </div>
 
 <style>
-  /* ---------- Mobile: 2x2 grid + modal ---------- */
-  /* Scoped to a max-width query (not just relying on Tailwind's md:hidden)
-     so these rules can never win a specificity tie against md:flex/hidden
-     on the desktop markup, regardless of CSS source order. */
+  /* ---------- Mobile: 2-col grid, tap to expand in place ---------- */
   @media (max-width: 767.98px) {
     .squeeze-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0.75rem;
+      align-items: start;
     }
 
     .squeeze-tile {
-      aspect-ratio: 1 / 1;
+      border-radius: var(--radius-brand);
+      border: 1px solid rgba(241, 234, 224, 0.18);
+      background: rgba(241, 234, 224, 0.05);
+      overflow: hidden;
+    }
+
+    .squeeze-tile.is-active {
+      grid-column: 1 / -1;
+    }
+
+    .squeeze-tile-header {
       display: flex;
+      width: 100%;
+      aspect-ratio: 1 / 1;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 0.4rem;
-      border-radius: var(--radius-brand);
-      border: 1px solid rgba(241, 234, 224, 0.18);
-      background: rgba(241, 234, 224, 0.05);
-      cursor: pointer;
       padding: 0.5rem;
+      border: none;
+      background: none;
+      cursor: pointer;
       text-align: center;
+    }
+
+    .squeeze-tile.is-active .squeeze-tile-header {
+      aspect-ratio: auto;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0.9rem 1rem;
+      text-align: left;
     }
 
     .squeeze-tile-num {
@@ -115,6 +128,10 @@ const { panels } = Astro.props;
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--color-accent);
+    }
+
+    .squeeze-tile.is-active .squeeze-tile-num {
+      font-size: 1.1rem;
     }
 
     .squeeze-tile-label {
@@ -126,62 +143,46 @@ const { panels } = Astro.props;
       color: var(--color-sand);
       line-height: 1.25;
     }
-  }
 
-  .squeeze-dialog {
-    width: min(90vw, 440px);
-    max-height: 85vh;
-    margin: auto;
-    padding: 0;
-    border: none;
-    border-radius: var(--radius-brand);
-    background: var(--color-primary);
-    color: var(--color-sand);
-    overflow: hidden auto;
-  }
+    .squeeze-tile.is-active .squeeze-tile-label {
+      flex: 1 1 auto;
+      margin: 0 0.75rem;
+      font-size: 0.95rem;
+    }
 
-  .squeeze-dialog::backdrop {
-    background: rgba(15, 16, 18, 0.72);
-  }
+    .squeeze-tile-chevron {
+      display: none;
+      flex: 0 0 auto;
+      color: var(--color-accent);
+      transition: transform 300ms ease;
+    }
 
-  .squeeze-dialog-close {
-    position: absolute;
-    z-index: 2;
-    top: 0.75rem;
-    right: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 999px;
-    border: none;
-    background: rgba(15, 16, 18, 0.55);
-    color: var(--color-sand);
-    cursor: pointer;
-  }
+    .squeeze-tile.is-active .squeeze-tile-chevron {
+      display: block;
+      transform: rotate(180deg);
+    }
 
-  .squeeze-dialog-img {
-    display: block;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-  }
+    .squeeze-tile-body {
+      display: none;
+    }
 
-  .squeeze-dialog-body {
-    padding: 1.1rem 1.25rem 1.4rem;
-  }
+    .squeeze-tile.is-active .squeeze-tile-body {
+      display: block;
+    }
 
-  .squeeze-dialog-num {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--color-accent);
+    .squeeze-tile-img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .squeeze-tile-text {
+      padding: 1rem 1.1rem 1.25rem;
+    }
   }
 
   /* ---------- Desktop: squeeze strip ---------- */
-  /* Scoped to a min-width query to match md:flex exactly, for the same
-     specificity-safety reason as the mobile block above. */
   @media (min-width: 768px) {
     .squeeze-row {
       gap: 1rem;
@@ -320,21 +321,21 @@ const { panels } = Astro.props;
       }
     });
 
-    // Mobile grid + modal
-    const tiles = Array.from(root.querySelectorAll<HTMLButtonElement>('.squeeze-tile'));
-    const dialogs = Array.from(root.querySelectorAll<HTMLDialogElement>('.squeeze-dialog'));
+    // Mobile grid: tap a tile to expand it full-width in place
+    const tiles = Array.from(root.querySelectorAll<HTMLElement>('.squeeze-tile'));
 
     tiles.forEach((tile) => {
-      tile.addEventListener('click', () => {
-        const dialog = dialogs.find((d) => d.dataset.dialog === tile.dataset.open);
-        dialog?.showModal();
-      });
-    });
-
-    dialogs.forEach((dialog) => {
-      dialog.querySelector('.squeeze-dialog-close')?.addEventListener('click', () => dialog.close());
-      dialog.addEventListener('click', (e) => {
-        if (e.target === dialog) dialog.close();
+      const header = tile.querySelector('.squeeze-tile-header');
+      header?.addEventListener('click', () => {
+        const willOpen = !tile.classList.contains('is-active');
+        for (const t of tiles) {
+          t.classList.remove('is-active');
+          t.querySelector('.squeeze-tile-header')?.setAttribute('aria-expanded', 'false');
+        }
+        if (willOpen) {
+          tile.classList.add('is-active');
+          header.setAttribute('aria-expanded', 'true');
+        }
       });
     });
   }
