@@ -36,6 +36,7 @@ const year = new Date().getFullYear();
           Contact
         </div>
         <ul class="mt-3 space-y-2 text-sm text-sand-2/90">
+          <li><a href={`mailto:${SITE.email}`} class="hover:text-accent">{SITE.email}</a></li>
           <li>{SITE.address.street}</li>
           <li>{SITE.address.postalCode} {SITE.address.city}</li>
         </ul>
