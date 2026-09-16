@@ -1,17 +1,15 @@
 export const SITE = {
   name: 'Het Gevel Concept',
-  legalName: 'VP Euro Corporation B.V.',
+  legalName: 'Het Gevel Concept',
   tradeName: 'Het Gevel Concept',
   tagline: 'Vakmanschap zonder compromissen.',
-  kvk: '83601864',
+  kvk: '42164957',
   btw: '[BTW-nummer]',
   address: {
-    street: 'Bijsselseweg 11-26',
-    postalCode: '8256RE',
-    city: 'Biddinghuizen',
+    street: 'Dokter van Dalelaan 34',
+    postalCode: '3851JB',
+    city: 'Ermelo',
   },
-  phone: '+31 6 57485066',
-  phoneHref: 'tel:+31657485066',
   email: 'info@hetgevelconcept.nl',
   serviceArea: [
     'Ermelo',

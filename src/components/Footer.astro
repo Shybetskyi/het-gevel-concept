@@ -36,7 +36,6 @@ const year = new Date().getFullYear();
           Contact
         </div>
         <ul class="mt-3 space-y-2 text-sm text-sand-2/90">
-          <li><a href={SITE.phoneHref} class="hover:text-accent">{SITE.phone}</a></li>
           <li>{SITE.address.street}</li>
           <li>{SITE.address.postalCode} {SITE.address.city}</li>
         </ul>
@@ -55,7 +54,7 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="mt-12 flex flex-col gap-2 border-t border-sand/10 pt-6 text-xs text-sand-2/70 sm:flex-row sm:items-center sm:justify-between">
-      <span>&copy; {year} {SITE.legalName}, handelend onder de naam {SITE.tradeName}</span>
+      <span>&copy; {year} {SITE.legalName}</span>
       <span>KvK {SITE.kvk} &middot; BTW {SITE.btw}</span>
     </div>
   </div>

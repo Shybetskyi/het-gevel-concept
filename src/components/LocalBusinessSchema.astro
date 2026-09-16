@@ -8,7 +8,6 @@ const schema = {
   legalName: SITE.legalName,
   image: new URL('/og-image.png', Astro.site).toString(),
   url: Astro.site?.toString(),
-  telephone: SITE.phone,
   address: {
     '@type': 'PostalAddress',
     streetAddress: SITE.address.street,
