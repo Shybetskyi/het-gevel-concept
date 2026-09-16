@@ -146,6 +146,29 @@ const diensten = ['Voegwerk uithakken', 'Nieuw voegwerk', 'Gevelreiniging', 'Imp
         <p id="offerte-form-status" class="text-sm" role="status"></p>
       </form>
 
+      <dialog id="offerte-success-dialog" class="offerte-success-dialog">
+        <div class="flex flex-col items-center gap-4 p-8 text-center">
+          <div class="flex h-14 w-14 items-center justify-center rounded-full bg-accent/10 text-accent">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+          <h2 class="font-display text-xl font-semibold uppercase tracking-wide text-primary">
+            Aanvraag verzonden
+          </h2>
+          <p class="text-sm text-primary/75">
+            Bedankt! Wij hebben uw offerteaanvraag ontvangen en nemen binnen twee werkdagen contact met u op.
+          </p>
+          <button
+            type="button"
+            id="offerte-success-close"
+            class="mt-2 rounded-brand bg-accent px-6 py-2.5 font-display text-sm font-semibold uppercase tracking-wide text-paper hover:opacity-90"
+          >
+            Sluiten
+          </button>
+        </div>
+      </dialog>
+
       <aside class="space-y-6">
         <div class="rounded-brand bg-primary p-6 text-sand">
           <h2 class="font-display text-sm font-semibold uppercase tracking-wide text-sand-2">Contactgegevens</h2>
@@ -183,6 +206,10 @@ const diensten = ['Voegwerk uithakken', 'Nieuw voegwerk', 'Gevelreiniging', 'Imp
   const fotosDropzone = document.getElementById('fotos-dropzone');
   const fotosFilename = document.getElementById('fotos-filename');
 
+  const successDialog = document.getElementById('offerte-success-dialog') as HTMLDialogElement | null;
+  const successClose = document.getElementById('offerte-success-close');
+  successClose?.addEventListener('click', () => successDialog?.close());
+
   function openFotosPicker() {
     fotosInput?.click();
   }
@@ -219,9 +246,10 @@ const diensten = ['Voegwerk uithakken', 'Nieuw voegwerk', 'Gevelreiniging', 'Imp
 
       if (!response.ok) throw new Error('request_failed');
 
-      status.textContent = 'Bedankt! Wij nemen binnen twee werkdagen contact met u op.';
-      status.className = 'text-sm text-accent';
+      status.textContent = '';
       form.reset();
+      if (fotosFilename) fotosFilename.textContent = 'Geen bestand gekozen';
+      successDialog?.showModal();
     } catch {
       status.textContent =
         'Er ging iets mis bij het verzenden. Bel ons gerust direct, of probeer het later opnieuw.';
@@ -229,3 +257,19 @@ const diensten = ['Voegwerk uithakken', 'Nieuw voegwerk', 'Gevelreiniging', 'Imp
     }
   });
 </script>
+
+<style>
+  .offerte-success-dialog {
+    max-width: 26rem;
+    width: calc(100% - 2.5rem);
+    margin: auto;
+    border: none;
+    border-radius: var(--radius-brand);
+    background: var(--color-paper);
+    padding: 0;
+  }
+
+  .offerte-success-dialog::backdrop {
+    background: rgba(36, 39, 43, 0.6);
+  }
+</style>
