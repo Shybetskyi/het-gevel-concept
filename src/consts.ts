@@ -4,7 +4,6 @@ export const SITE = {
   tradeName: 'Het Gevel Concept',
   tagline: 'Vakmanschap zonder compromissen.',
   kvk: '42164957',
-  btw: '[BTW-nummer]',
   address: {
     street: 'Dokter van Dalelaan 34',
     postalCode: '3851JB',
