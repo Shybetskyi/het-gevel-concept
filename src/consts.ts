@@ -53,7 +53,8 @@ export const SERVICES = [
   {
     slug: 'complete-gevelrenovatie',
     title: 'Complete gevelrenovatie',
-    short: 'Alle diensten gecombineerd in één traject, van eerste inspectie tot opgeleverde, beschermde gevel.',
+    short:
+      'Alles rondom uw gevel in één traject: voegwerk, metselwerk, reiniging en impregneren, tot en met nieuwe kozijnen en schilderwerk — van eerste inspectie tot opgeleverde gevel.',
   },
 ] as const;
 
