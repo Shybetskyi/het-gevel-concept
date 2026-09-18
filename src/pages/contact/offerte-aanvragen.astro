@@ -4,7 +4,16 @@ import Layout from '../../layouts/Layout.astro';
 import voltooidImage from '../../assets/generated/offerte-voltooid.jpg';
 import { SITE } from '../../consts';
 
-const diensten = ['Voegwerk uithakken', 'Nieuw voegwerk', 'Gevelreiniging', 'Impregneren', 'Anders'];
+const diensten = [
+  'Voegwerk uithakken',
+  'Nieuw voegwerk',
+  'Gevelreiniging',
+  'Impregneren',
+  'Metselwerk herstel',
+  'Scheurherstel',
+  'Complete gevelrenovatie',
+  'Anders',
+];
 ---
 
 <Layout
@@ -31,13 +40,17 @@ const diensten = ['Voegwerk uithakken', 'Nieuw voegwerk', 'Gevelreiniging', 'Imp
           </legend>
 
           <div class="sm:col-span-2">
-            <label for="aanhef" class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-mortar">
-              Aanhef
-            </label>
-            <select id="aanhef" name="aanhef" class="w-full rounded-brand border border-sand-2 bg-paper px-3.5 py-2.5 text-sm text-primary">
-              <option value="Dhr.">Dhr.</option>
-              <option value="Mevr.">Mevr.</option>
-            </select>
+            <span class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-mortar">Aanhef</span>
+            <div class="flex gap-5">
+              <label class="flex items-center gap-2.5 text-sm text-primary/85">
+                <input type="radio" name="aanhef" value="Dhr." checked class="h-4 w-4 accent-accent" />
+                Dhr.
+              </label>
+              <label class="flex items-center gap-2.5 text-sm text-primary/85">
+                <input type="radio" name="aanhef" value="Mevr." class="h-4 w-4 accent-accent" />
+                Mevr.
+              </label>
+            </div>
           </div>
 
           <div>
@@ -135,6 +148,13 @@ const diensten = ['Voegwerk uithakken', 'Nieuw voegwerk', 'Gevelreiniging', 'Imp
 
         <!-- Honeypot anti-spam field, hidden from real visitors -->
         <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+        <label class="flex items-start gap-2.5 text-sm text-primary/85">
+          <input type="checkbox" name="akkoord" required class="mt-0.5 h-4 w-4 accent-accent" />
+          <span>
+            Ik ga akkoord met de <a href="/privacybeleid/" class="text-accent hover:underline" target="_blank" rel="noopener">privacyverklaring</a>.
+          </span>
+        </label>
 
         <button
           type="submit"

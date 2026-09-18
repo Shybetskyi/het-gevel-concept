@@ -37,8 +37,9 @@ export const POST: APIRoute = async ({ request }) => {
   const email = String(form.get('email') ?? '').trim();
   const opmerkingen = String(form.get('opmerkingen') ?? '').trim();
   const diensten = form.getAll('diensten').map(String);
+  const akkoord = form.get('akkoord');
 
-  if (!voornaam || !achternaam || !straat || !postcode || !plaats || !telefoon || !email) {
+  if (!voornaam || !achternaam || !straat || !postcode || !plaats || !telefoon || !email || !akkoord) {
     return new Response(JSON.stringify({ error: 'missing_fields' }), { status: 400 });
   }
   if (!/^\S+@\S+\.\S+$/.test(email)) {
