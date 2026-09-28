@@ -7,7 +7,6 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: update to the real domain once purchased
   site: 'https://hetgevelconcept.nl',
 
   output: 'server',

@@ -9,6 +9,8 @@ export const SITE = {
     postalCode: '3851JB',
     city: 'Ermelo',
   },
+  phone: '0341 - 234 888',
+  phoneHref: 'tel:+31341234888',
   email: 'info@hetgevelconcept.nl',
   serviceArea: [
     'Ermelo',
