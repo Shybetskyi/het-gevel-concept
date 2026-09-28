@@ -1,3 +1,9 @@
+@import "@fontsource/oswald/500.css";
+@import "@fontsource/oswald/600.css";
+@import "@fontsource/oswald/700.css";
+@import "@fontsource/work-sans/400.css";
+@import "@fontsource/work-sans/500.css";
+@import "@fontsource/work-sans/600.css";
 @import "tailwindcss";
 
 @theme {
@@ -8,8 +14,8 @@
   --color-mortar: #8b8177; /* Voeggrijs */
   --color-paper: #fbf8f3;
 
-  --font-display: "Oswald", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Oswald", "Oswald fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Work Sans", "Work fallback", ui-sans-serif, system-ui, sans-serif;
 
   --radius-brand: 12px;
 }
